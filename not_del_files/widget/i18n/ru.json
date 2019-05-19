@@ -1,0 +1,14 @@
+{
+  "widget": {
+    "name": "Запрет изменения примечаний",
+    "short_description": "Запрет изменения примечаний",
+    "description": "<span style='font-weight: 600;'>Описание:</span><br><br>Виджет «Запрет изменения примечаний» (позволяет заблокировать возможность удаление файлов из созданных примечаний, запретить удалять примечания вовсе и редактировать их, а также позволяет запретить добавлять файлы в примечания)<br><br><span style='font-weight: 600;'>Видео-описание:</span><br><br><iframe width='450' height='240' src='https://www.youtube.com/embed/g_5zMB9J1tQ' frameborder='0' allow='autoplay; encrypted-media' allowfullscreen></iframe><br><br><span style='font-weight: 600;'>Как подключить:</span><br><br><p style='width:450px;'>Чтобы получить виджет, обратитесь в компанию <a href='https://linerapp.com/' target='_blank'>LinerApp</a><br><br>Телефон: <a href='tel:+74996477716' target='_blank'>+7 (499) 647-77-16</a><br><br>Почта: <a href='mailto:info@linerapp.com' target='_blank'>info@linerapp.com</a><p>"
+  },
+  "settings": {
+    "libra": "Запретить удаление файлов для пользователей",
+    "linnerwidget_code": "Пароль для установки виджета",
+    "not_add_files": "Не разрешать добавлять новые файлы",
+    "not_del_notes": "Запретить удаление и редактирование созданых примечаний"
+
+  }
+}

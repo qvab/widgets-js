@@ -1,0 +1,11 @@
+{
+  "widget": {
+    "name": "Распределение заявок",
+    "short_description": "Тестовый виджет",
+    "description": "<span style='font-weight: 600;'>Описание:</span><br><br>Виджет «Распределение заявок по менеджерам» (позволит распределять заявки по  заданному сценарию: равномерно, по количеству просроченных задач и по компетенции менеджера)<br><br><span style='font-weight: 600;'>Видео-описание:</span><br><br><iframe width='450' height='240' src='https://www.youtube.com/embed/ndQJ8HIytmc' frameborder='0' allow='autoplay; encrypted-media' allowfullscreen></iframe><br><br><span style='font-weight: 600;'>Как подключить:</span><br><br><p style='width:450px;'>Чтобы получить виджет, обратитесь в компанию <a href='https://linerapp.com/' target='_blank'>LinerApp</a><br><br>Телефон: <a href='tel:+74996477716' target='_blank'>+7 (499) 647-77-16</a><br><br>Почта: <a href='mailto:support@linerapp.com' target='_blank'>support@linerapp.com</a><p>"
+  },
+  "settings": {
+    "libra": "Текстовое поле",
+    "linnerwidget_code": "Пароль для установки виджета"
+  }
+}

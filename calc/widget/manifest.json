@@ -1,0 +1,105 @@
+{
+  "widget": {
+    "name": "widget.name",
+    "description": "widget.description",
+    "short_description": "widget.short_description",
+    "code": "mishanin_calc_dev34",
+    "secret_key": "1bb7874e747d925e3b0c71e84d3683a1565d5d7266463c334d394a51e01a7f9c",
+    "version": "1.0.1",
+    "interface_version": 2,
+    "init_once": true,
+    "locale": [
+      "ru"
+    ],
+    "installation": true,
+    "support": {
+      "link": "https://linerapp.com/",
+      "email": "info@linerapp.com"
+    }
+  },
+  "locations": [
+    "settings"
+  ],
+  "settings": {
+    "field1": {
+      "name": "settings.field1",
+      "type": "text",
+      "required": true
+    },
+    "field2": {
+      "name": "settings.field2",
+      "type": "text",
+      "required": false
+    },
+    "field3": {
+      "name": "settings.field3",
+      "type": "text",
+      "required": false
+    },
+    "field4": {
+      "name": "settings.field4",
+      "type": "text",
+      "required": false
+    },
+    "field5": {
+      "name": "settings.field5",
+      "type": "text",
+      "required": false
+    },
+    "field6": {
+      "name": "settings.field6",
+      "type": "text",
+      "required": false
+    },
+    "field7": {
+      "name": "settings.field7",
+      "type": "text",
+      "required": false
+    },
+    "field8": {
+      "name": "settings.field8",
+      "type": "text",
+      "required": false
+    },
+    "field9": {
+      "name": "settings.field9",
+      "type": "text",
+      "required": false
+    },
+    "field10": {
+      "name": "settings.field10",
+      "type": "text",
+      "required": false
+    },
+    "field11": {
+      "name": "settings.field11",
+      "type": "text",
+      "required": false
+    },
+    "field12": {
+      "name": "settings.field12",
+      "type": "text",
+      "required": false
+    },
+    "field13": {
+      "name": "settings.field13",
+      "type": "text",
+      "required": false
+    },
+    "field14": {
+      "name": "settings.field14",
+      "type": "text",
+      "required": false
+    },
+    "field15": {
+      "name": "settings.field15",
+      "type": "text",
+      "required": false
+    },
+    "linnerwidget_code": {
+      "name": "settings.linnerwidget_code",
+      "type": "text",
+      "required": true
+    }
+  }
+}

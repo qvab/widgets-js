@@ -1,0 +1,12 @@
+{
+  "widget": {
+    "name": "Автозадачи",
+    "short_description": "Автозадачи",
+    "description":"<span style='font-weight: 600;'>Описание:</span><br><br>Виджет «Автоматическое назначение задачи» (позволит ставить задачи, которые автоматически будут повторяться с определённой периодичностью, например, в понедельник и четверг)<br><br><span style='font-weight: 600;'>Видео-описание:</span><br><br><iframe width='450' height='240' src='https://www.youtube.com/embed/j34eyDSeyr8' frameborder='0' allow='autoplay; encrypted-media' allowfullscreen></iframe><br><br><span style='font-weight: 600;'>Как подключить:</span><br><br><p style='width:450px;'>Чтобы получить виджет, обратитесь в компанию <a href='https://linerapp.com/' target='_blank'>LinerApp</a><br><br>Телефон: <a href='tel:+74996477716' target='_blank'>+7 (499) 647-77-16</a><br><br>Почта: <a href='mailto:info@linerapp.com' target='_blank'>info@linerapp.com</a></p>"
+  },
+  "settings": {
+
+    "linnerwidget_code": "Пароль для установки виджета"
+
+  }
+}

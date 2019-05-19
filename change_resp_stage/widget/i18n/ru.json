@@ -1,0 +1,11 @@
+{
+  "widget": {
+    "name": "Запрет смены ответственного и этапа",
+    "short_description": "Запрет смены ответственного и этапа",
+    "description": "<style>.widget-settings-block__desc-expander_hidden {overflow-y:visible; overflow-x:visible;height: 660px;width:250px;}.widget-settings-block__desc-expander{display:none;}</style><span style='font-weight: 600;'>Описание:</span><br><br>Виджет «Запрет смены этапа и ответственного» позволяет ограничить пользователей в смене ответственного в сделке, в смене определенного этапа, например «успешно реализовано», а также ограничивает смену этапа на предыдущий.<br><br><span style='font-weight: 600;'>Видео-описание:</span><br><br><iframe width='450' height='240' src='https://www.youtube.com/embed/AK70Eols71Q' frameborder='0' allow='autoplay; encrypted-media' allowfullscreen></iframe><br><br><span style='font-weight: 600;'>Как подключить:</span><br><br><p style='width:450px;'>Чтобы получить виджет, обратитесь в компанию <a href='https://linerapp.com/' target='_blank'>LinerApp</a><br><br>Телефон: <a href='tel:+74996477716' target='_blank'>+7 (499) 647-77-16</a><br><br>Почта: <a href='mailto:info@linerapp.com' target='_blank'>info@linerapp.com</a><p>"
+  },
+  "settings": {
+    "apikey": "Включено",
+    "linnerwidget_code": "Пароль для установки виджета"
+  }
+}

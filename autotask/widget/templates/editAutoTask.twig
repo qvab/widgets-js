@@ -1,0 +1,223 @@
+<a href="#" id="{{ w_code }}_editTask" class="{{w_code}}_editTask">Список добавленных задач</a><h2 class="modal-body__caption head_2 clear">Редактировать задачу</h2>
+<form id="{{w_code}}_form">
+    <div class="control--select {{ w_code }}" style="">
+        <ul class="custom-scroll control--select--list" style="">
+            {% set k = "" %}
+            {% for index, key in pipelines %}
+                {% if key["id"] == task.pipeline %}
+                    {% set k = index %}
+                    {% set selectedOption = 1 %}
+                {% endif %}
+                <li data-value="{{ key['id'] }}" data-color="" class="control--select--list--item {{  selectedOption ? 'control--select--list--item-selected' : ''}}">
+                    <span class="control--select--list--item-inner" title="{{ key['option'] }}">{{ key["option"] }}</span>
+                </li>
+            {% endfor %}
+        </ul>
+        <button class="control--select--button" tabindex="" type="button" data-value="{{ pipelines[k].id }}">
+            <span class="control--select--button-inner">{{ pipelines[k]["option"] }}</span>
+        </button>
+        <input class="control--select--input" id="{{w_code}}_pipelines" name="pipeline" value="{{ pipelines[k]['id'] }}" data-prev-value="{{ pipelines[k]['id'] }}" type="hidden">
+    </div>
+
+    <div class="checkboxes_dropdown {{ w_code }} {{ w_code }}_statuses js-control-checkboxes_dropdown is_checked_dropdown">
+        <div class="checkboxes_dropdown__list custom-scroll">
+            <div class="checkboxes_dropdown__list__wrapper__inner">
+                <div class="checkboxes_dropdown__item">
+                    <label class="control-checkbox checkboxes_dropdown__label js-master-checkbox-wrapper is-checked">
+                        <div class="control-checkbox__body">
+                            <input class="js-form-changes-skip js-master-checkbox" name="" id="cbx_drop_master_NaN" value="" data-value="" type="checkbox" checked="checked">
+                            <span class="control-checkbox__helper control-checkbox__helper_minus"></span>
+                        </div>
+                        <div class="control-checkbox__text element__text js-select-all-text checkboxes_dropdown__label_title checkboxes_dropdown__label_title-not_active" title="Выбрать всё">Снять выделение
+                        </div>
+                    </label>
+                </div>
+                {% set selectedStatuses = [] %}
+                {% for index, item in statuses %}
+                    {% set selectedOption = 0 %}
+                    {% for status in task["statuses"] %}
+                        {% if item["id"] == status %}
+                            {% set selectedOption = 1 %}
+                            {% set selectedStatuses = selectedStatuses|merge([item["option"]]) %}
+                        {% endif %}
+                    {% endfor %}
+                    <div class="checkboxes_dropdown__item" style="">
+                        <label class="control-checkbox checkboxes_dropdown__label  {{ selectedOption ? 'is-checked' : '' }}">
+                            <div class="control-checkbox__body">
+                                <input class="js-item-checkbox" name="statuses[]" id="cbx_drop_{{ item['id']}}" value="{{ item['id'] }}" data-value="{{ item['id'] }}" type="checkbox" {{ selectedOption ? 'checked="checked"' : '' }}>
+                                <span class="control-checkbox__helper "></span>
+                            </div>
+                            <div class="control-checkbox__text element__text checkboxes_dropdown__label_title" title="{{ item['option'] }}">{{ item["option"] }}
+                            </div>
+                        </label>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+
+        <div class="checkboxes_dropdown__title_wrapper">
+            <label class="control-checkbox checkboxes_dropdown__checkbox_master icon-checkbox js-master-checkbox-wrapper is-checked">
+                <div class="control-checkbox__body">
+                    <input class="js-form-changes-skip js-master-checkbox" name="" checked="checked" id="linerapp_autotask_statuses" value="" data-value="" type="checkbox">
+                    <span class="control-checkbox__helper control-checkbox__helper_minus"></span>
+                </div>
+            </label>
+            <span class="checkboxes_dropdown__title-selected">
+                <span class="checkboxes_dropdown__title" data-numeral="значение,значения,значений,значения" data-title-empty="Выбрать">
+                    {% for index, item in selectedStatuses %}
+                        {% if index == 0 %}
+                            <div class="checkboxes_dropdown__title-item" data-title-before="">{{ item }}</div>
+                        {% else %}
+                            <div class="checkboxes_dropdown__title-item">{{ item }}</div>
+                        {% endif %}
+                    {% endfor %}
+                </span>
+            </span>
+            <span class="checkboxes_dropdown_icon icon-v-ico-2"></span>
+        </div>
+    </div>
+
+    <div class="checkboxes_dropdown {{ w_code }} js-control-checkboxes_dropdown is_checked_dropdown">
+        <div class="checkboxes_dropdown__list custom-scroll">
+            <div class="checkboxes_dropdown__list__wrapper__inner">
+                <div class="checkboxes_dropdown__item">
+                    <label class="control-checkbox checkboxes_dropdown__label js-master-checkbox-wrapper is-checked">
+                        <div class="control-checkbox__body">
+                            <input class="js-form-changes-skip js-master-checkbox" name="" id="cbx_drop_master_NaN" value="" data-value="" type="checkbox" checked="checked">
+                            <span class="control-checkbox__helper control-checkbox__helper_minus"></span>
+                        </div>
+                        <div class="control-checkbox__text element__text js-select-all-text checkboxes_dropdown__label_title checkboxes_dropdown__label_title-not_active" title="Выбрать всё">Снять выделение
+                        </div>
+                    </label>
+                </div>
+                {% set selectedUsers = [] %}
+                {% for index, item in responsible %}
+                    {% set selectedOption = 0 %}
+                    {% for user in task["responsible"] %}
+                        {% if item["id"] == user %}
+                            {% set selectedOption = 1 %}
+                            {% set selectedUsers = selectedUsers|merge([item["option"]]) %}
+                        {% endif %}
+                    {% endfor %}
+                    <div class="checkboxes_dropdown__item" style="">
+                        <label class="control-checkbox checkboxes_dropdown__label  {{ selectedOption ? 'is-checked' : '' }}">
+                            <div class="control-checkbox__body">
+                                <input class="js-item-checkbox" name="responsible[]" id="cbx_drop_{{ item['id']}}" value="{{ item['id'] }}" data-value="{{ item['id'] }}" type="checkbox" {{ selectedOption ? 'checked="checked"' : '' }}>
+                                <span class="control-checkbox__helper "></span>
+                            </div>
+                            <div class="control-checkbox__text element__text checkboxes_dropdown__label_title" title="{{ item['option'] }}">{{ item["option"] }}
+                            </div>
+                        </label>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+        <div class="checkboxes_dropdown__title_wrapper">
+            <label class="control-checkbox checkboxes_dropdown__checkbox_master icon-checkbox js-master-checkbox-wrapper is-checked">
+                <div class="control-checkbox__body">
+                    <input class="js-form-changes-skip js-master-checkbox" name="" checked="checked" id="linerapp_autotask_responsible" value="" data-value="" type="checkbox">
+                    <span class="control-checkbox__helper control-checkbox__helper_minus"></span>
+                </div>
+            </label>
+            <span class="checkboxes_dropdown__title-selected">
+                <span class="checkboxes_dropdown__title" data-numeral="значение,значения,значений,значения" data-title-empty="Выбрать">
+                    {% for index, item in selectedUsers %}
+                        {% if index == 0 %}
+                            <div class="checkboxes_dropdown__title-item" data-title-before="">{{ item }}</div>
+                        {% else %}
+                            <div class="checkboxes_dropdown__title-item">{{ item }}</div>
+                        {% endif %}
+                    {% endfor %}
+                </span>
+            </span>
+            <span class="checkboxes_dropdown_icon icon-v-ico-2"></span>
+        </div>
+    </div>
+
+    <div class="checkboxes_dropdown {{ w_code }} js-control-checkboxes_dropdown is_checked_dropdown">
+        <div class="checkboxes_dropdown__list custom-scroll">
+            <div class="checkboxes_dropdown__list__wrapper__inner">
+                <div class="checkboxes_dropdown__item">
+                    <label class="control-checkbox checkboxes_dropdown__label js-master-checkbox-wrapper is-checked">
+                        <div class="control-checkbox__body">
+                            <input class="js-form-changes-skip js-master-checkbox" name="" id="cbx_drop_master_NaN" value="" data-value="" type="checkbox" checked="checked">
+                            <span class="control-checkbox__helper control-checkbox__helper_minus"></span>
+                        </div>
+                        <div class="control-checkbox__text element__text js-select-all-text checkboxes_dropdown__label_title checkboxes_dropdown__label_title-not_active" title="Выбрать всё">Снять выделение
+                        </div>
+                    </label>
+                </div>
+                {% set selectedSchedule = [] %}
+                {% for index, item in schedule %}
+                    {% set selectedOption = 0 %}
+                    {% for day in task["schedule"] %}
+                        {% if item["id"] == day %}
+                            {% set selectedOption = 1 %}
+                            {% set selectedSchedule = selectedSchedule|merge([item["option"]]) %}
+                        {% endif %}
+                    {% endfor %}
+                    <div class="checkboxes_dropdown__item" style="">
+                        <label class="control-checkbox checkboxes_dropdown__label  {{ selectedOption ? 'is-checked' : '' }}">
+                            <div class="control-checkbox__body">
+                                <input class="js-item-checkbox" name="schedule[]" id="cbx_drop_{{ item['id']}}" value="{{ item['id'] }}" data-value="{{ item['id'] }}" type="checkbox" {{ selectedOption ? 'checked="checked"' : '' }}>
+                                <span class="control-checkbox__helper "></span>
+                            </div>
+                            <div class="control-checkbox__text element__text checkboxes_dropdown__label_title" title="{{ item['option'] }}">{{ item["option"] }}
+                            </div>
+                        </label>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+        <div class="checkboxes_dropdown__title_wrapper">
+            <label class="control-checkbox checkboxes_dropdown__checkbox_master icon-checkbox js-master-checkbox-wrapper is-checked">
+                <div class="control-checkbox__body">
+                    <input class="js-form-changes-skip js-master-checkbox" name="" checked="checked" id="linerapp_autotask_schedule" value="" data-value="" type="checkbox">
+                    <span class="control-checkbox__helper control-checkbox__helper_minus"></span>
+                </div>
+            </label>
+            <span class="checkboxes_dropdown__title-selected">
+                <span class="checkboxes_dropdown__title" data-numeral="значение,значения,значений,значения" data-title-empty="Выбрать">
+                    {% for index, item in selectedSchedule %}
+                        {% if index == 0 %}
+                            <div class="checkboxes_dropdown__title-item" data-title-before="">{{ item }}</div>
+                        {% else %}
+                            <div class="checkboxes_dropdown__title-item">{{ item }}</div>
+                        {% endif %}
+                    {% endfor %}
+                </span>
+            </span>
+            <span class="checkboxes_dropdown_icon icon-v-ico-2"></span>
+        </div>
+    </div>
+
+    <div class="control--select {{ w_code }}" style="">
+        <ul class="custom-scroll control--select--list" style="">
+            {% set k = "" %}
+            {% for index, key in task_types %}
+                {% if key["id"] == task.task_type %}
+                    {% set k = index %}
+                    {% set selectedOption = 1 %}
+                {% endif %}
+                <li data-value="{{ key['id'] }}" data-color="" class="control--select--list--item {{  selectedOption ? 'control--select--list--item-selected' : ''}}">
+                    <span class="control--select--list--item-inner" title="">{{ key["option"] }}</span>
+                </li>
+            {% endfor %}
+        </ul>
+        <button class="control--select--button" tabindex="" type="button" data-value="{{ task_types[k].id }}">
+            <span class="control--select--button-inner">{{ task_types[k]["option"] }}</span>
+        </button>
+        <input class="control--select--input" id="{{w_code}}_task_types" name="task_type" value="{{ task_types[k]['id'] }}" data-prev-value="{{ task_types[k]['id'] }}" type="hidden">
+    </div>
+
+    <textarea id="add_task__textarea" class="text-input text-input-textarea text-input text-input-textarea validate-error-wrapper textarea-autosize modal-body__inner__textarea" tabindex="" name="body" placeholder="Добавьте комментарий">{{ task.body }}</textarea>
+
+    <div class="modal-body__actions">
+        <button id="{{ w_code }}_saveButton" type="button" class="button-input js-modal-accept js-button-with-loader modal-body__actions__save" data-id="{{ task.id }}" tabindex="1">
+            <span class="button-input-inner"><span class="button-input-inner__text">Сохранить</span></span>
+        </button>
+        <button type="button" class="button-input button-cancel" tabindex="2">
+            <span>Отменить</span>
+        </button>
+    </div>
+</form>

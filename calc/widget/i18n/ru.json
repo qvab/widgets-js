@@ -1,0 +1,25 @@
+{
+    "widget": {
+        "name": "Калькулятор прибыли",
+        "short_description": "Калькулятор прибыли",
+        "description": "<span style='font-weight: 600;'>Описание:</span><br><br>Виджет «Калькулятор прибыли» (автоматический расчет прибыли в сделке)<br>Поля для расчета должны быть созданы заранее<br><span style='font-weight: 600;'>Видео-описание:</span><br><br><iframe width='450' height='240' src='https://www.youtube.com/embed/8wj265DrLZw' frameborder='0' allow='autoplay; encrypted-media' allowfullscreen></iframe><br><br><span style='font-weight: 600;'>Как подключить:</span><br><br><p style='width:450px;'>Чтобы получить виджет, обратитесь в компанию <a href='https://linerapp.com/' target='_blank'>LinerApp</a><br><br>Телефон: <a href='tel:+74996477716' target='_blank'>+7 (499) 647-77-16</a><br><br>Почта: <a href='mailto:info@linerapp.com' target='_blank'>info@linerapp.com</a><p>"
+    },
+    "settings": {
+        "field1": "Поле 1",
+        "field2": "Поле 2",
+        "field3": "Поле 3",
+        "field4": "Поле 4",
+        "field5": "Поле 5",
+        "field6": "Поле 6",
+        "field7": "Поле 7",
+        "field8": "Поле 8",
+        "field9": "Поле 9",
+        "field10": "Поле 10",
+        "field11": "Поле 11",
+        "field12": "Поле 12",
+        "field13": "Поле 13",
+        "field14": "Поле 14",
+        "field15": "Поле 15",
+        "linnerwidget_code": "Пароль для установки виджета"
+    }
+}

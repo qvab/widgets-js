@@ -1,0 +1,71 @@
+body.page-loading::before {
+	z-index: 1000 !important;
+}
+body.page-loading::after {
+	z-index: 1000 !important;
+}
+.linerapp_switch_label {
+	background-color: #23b7e5;
+	cursor: pointer;
+	position: relative;
+	display: inline-block;
+	width: 35px;
+	height: 20px;
+	border-radius: 30px;
+	margin: 8px 0 0 60px;
+}
+
+.linerapp_switch_label input {
+	position: absolute;
+	opacity: 0;
+}
+
+.linerapp_switch_label input:checked + i::after {
+	margin-left: 16px;
+}
+
+.linerapp_switch_label i::after {
+	content: "";
+	position: absolute;
+	background-color: #fff;
+	width: 18px;
+	top: 1px;
+	bottom: 1px;
+	border-radius: 50%;
+	box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.25);
+	transition: margin-left 0.3s;
+}
+
+.linerapp_switch_label input:checked + i::before {
+	top: 50%;
+	bottom: 50%;
+	left: 50%;
+	right: 5px;
+	border-width: 0;
+	border-radius: 5px;
+}
+
+.linerapp_switch_label i::before {
+	content: "";
+	position: absolute;
+	top: -1px;
+	bottom: -1px;
+	left: -1px;
+	right: -1px;
+	background-color: #fff;
+	border: 1px solid #f0f0f0;
+	border-radius: 30px;
+	transition: all 0.2s;
+}
+
+.linked-form__field.linked-form__field_reassign .linked-form__field__value > span {
+	display: none;
+}
+
+.linked-form__field.linked-form__field_reassign .linked-form__field__value > span:first-of-type {
+	display: block;
+}
+
+.linerapp_resp_stage_pipeline__title {
+	padding: 8px 0;
+}

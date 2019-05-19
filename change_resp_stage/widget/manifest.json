@@ -1,0 +1,35 @@
+{
+  "widget": {
+    "name": "widget.name",
+    "description": "widget.description",
+    "short_description": "widget.short_description",
+    "code": "mishanin_change_dev37",
+    "secret_key": "e6ace271f22492438072bbb9f1c8f5e25bf513e9ce60895eb69970c2a2c87a9c",
+    "version": "1.0.3",
+    "interface_version": 2,
+    "init_once": true,
+    "locale": [
+      "ru"
+    ],
+    "installation": true,
+    "support": {
+      "link": "https://linerapp.com/",
+      "email": "info@linerapp.com"
+    }
+  },
+  "locations": [
+    "settings"
+  ],
+  "settings": {
+    "myfield": {
+      "name": "settings.apikey",
+      "type": "users",
+      "required": false
+    },
+    "linnerwidget_code": {
+      "name": "settings.linnerwidget_code",
+      "type": "text",
+      "required": true
+    }
+  }
+}
