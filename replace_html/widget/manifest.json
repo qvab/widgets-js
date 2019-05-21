@@ -1,0 +1,34 @@
+{
+  "widget": {
+    "name": "widget.name",
+    "description": "widget.description",
+    "short_description": "widget.short_description",
+    "code": "replace_html_6",
+    "secret_key": "17f20f3df9555597d71e8fd9827a37309566f05a24de56dcdc08a7207dbe8525",
+    "version": "1.0.0",
+    "interface_version": 2,
+    "init_once": true,
+    "locale": [
+      "ru"
+    ],
+    "installation": true,
+    "support": {
+      "link": "https://linerapp.com/",
+      "email": "info@linerapp.com"
+    }
+  },
+  "locations": [
+    "lcard",
+    "cucard",
+    "ccard",
+    "comcard",
+    "settings"
+  ],
+  "settings": {
+    "linnerwidget_code": {
+      "name": "settings.linnerwidget_code",
+      "type": "text",
+      "required": true
+    }
+  }
+}
