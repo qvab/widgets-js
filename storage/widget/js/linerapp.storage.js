@@ -324,7 +324,7 @@ function LinerAppStorage() {
       wrapper: '<div class="linerapp-docs-filelist"></div>',
       title: '<div class="linerapp-docs-files-title">Список файлов</div>',
       content: '<div class="linerapp-docs-files-content"></div>',
-      header: '<tr class="linerapp-table-header"><th>Тип</th><th>Название</th><th>Файлы</th><th>Дата</th><th>Дата<br />прикрепления</th><th></th>',
+      header: '<tr class="linerapp-table-header"><th>Тип</th><th>Название</th><th>Файлы</th><th>Дата</th><th>Дата<br />прикрепления</th><th>Отправитель</th><th></th>',
       item: function(arParams) {
         self.files.list[arParams.id] = {
           jq: false,
@@ -349,6 +349,7 @@ function LinerAppStorage() {
             <ul>' + listFilesHTML + '</ul>\</td>\
             <td class="field-date">' + arParams.date + '</td>\
             <td class="field-date-attache">' + arParams.date_attache + '</td>\
+            <td class="field-user">' + AMOCRM.constant("account")["users"][arParams.user] + '</td>\
             <td class="field-buttons"><a data-block-id="' + arParams.id + '" href="' + self.httpServer + '/docs/delete/file/' + arParams.id + '?subdomain=' + AMOCRM.constant('account').subdomain + '" class="linerapp-del-block icon icon-delete-trash"></a></td>\
             </tr>').appendTo(self.app.list.content.find("table"));
       }
@@ -668,7 +669,7 @@ function LinerAppStorage() {
         fd.append("name", $("#linerapp-field-name").val());
         fd.append("type", $("#linerapp-field-type").val());
         fd.append("date", $("#linerapp-field-date").val());
-
+        fd.append("user", AMOCRM.constant('user')["id"]);
         $.ajax({
           type: "POST",
           url: self.httpServer + '/docs/upload',
