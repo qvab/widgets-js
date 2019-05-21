@@ -1,0 +1,26 @@
+{
+  "widget": {
+    "name": "widget.name",
+    "description": "widget.description",
+    "short_description": "widget.short_description",
+    "code": "mishanin_report_19",
+    "secret_key": "2a59de49287d1b3c2a3abeb187c1d952f68146ae1aa34b15cdfe486e313bd76f",
+    "version": "1.0.0",
+    "interface_version": 2,
+    "init_once": false,
+    "locale": [
+      "ru"
+    ],
+    "installation": true
+  },
+  "locations": [
+    "everywhere"
+  ],
+  "settings": {
+    "linnerwidget_code": {
+      "name": "settings.linnerwidget_code",
+      "type": "text",
+      "required": true
+    }
+  }
+}

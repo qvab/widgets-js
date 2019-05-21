@@ -1,0 +1,46 @@
+{
+  "widget": {
+    "name": "widget.name",
+    "description": "widget.description",
+    "short_description": "widget.short_description",
+    "code": "mishanin_copy_112",
+    "secret_key": "5c17ab5e22edfa9ecc8e4924104b124e973dada89a8c3ddebb9b9738d96aa220",
+    "version": "1.0.0",
+    "interface_version": 2,
+    "init_once": true,
+    "locale": [
+      "ru"
+    ],
+    "installation": true,
+    "support": {
+      "link": "https://linerapp.com/",
+      "email": "info@linerapp.com"
+    }
+  },
+  "locations": [
+    "lcard",
+    "settings"
+  ],
+  "settings": {
+    "copy_note": {
+      "name": "settings.copy_note",
+      "type": "text",
+      "required": false
+    },
+    "copy_status": {
+      "name": "settings.copy_status",
+      "type": "text",
+      "required": false
+    },
+    "copy_resp": {
+      "name": "settings.copy_resp",
+      "type": "text",
+      "required": false
+    },
+    "linnerwidget_code": {
+      "name": "settings.linnerwidget_code",
+      "type": "text",
+      "required": true
+    }
+  }
+}

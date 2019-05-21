@@ -1,0 +1,30 @@
+{
+  "widget": {
+    "name": "widget.name",
+    "description": "widget.description",
+    "short_description": "widget.short_description",
+    "code": "mishanin_autotask_dev57",
+    "secret_key": "11b51905c0fa78cebe5066c8babb42de4694835c4d3d3312d8a0deb179f1db44",
+    "version": "1.0.18",
+    "interface_version": 2,
+    "init_once": true,
+    "locale": [
+      "ru"
+    ],
+    "installation": true,
+    "support": {
+      "link": "https://linerapp.com/",
+      "email": "info@linerapp.com"
+    }
+  },
+  "locations": [
+    "everywhere"
+  ],
+  "settings": {
+    "linnerwidget_code": {
+      "name": "settings.linnerwidget_code",
+      "type": "text",
+      "required": true
+    }
+  }
+}

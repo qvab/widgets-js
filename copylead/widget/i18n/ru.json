@@ -1,0 +1,20 @@
+{
+
+  "widget": {
+
+    "name": "Копирование сделки",
+
+    "short_description": "Копирование сделки",
+
+    "description": "<span style='font-weight: 600;'>Описание:</span><br><br>«Копирование сделки» создает копию сделки, включая все вкладки, пользовательские поля, прикрепляет к копии сделки соответствующие контакты и компанию. Также в настройках виджета возможно активировать копирование примечаний, событий смены этапа и ответственного. Копия сделки создается на этапе продаж копируемой сделки. <br><br><span style='font-weight: 600;'>Видео-описание:</span><br><br><iframe width='450' height='240' src='https://www.youtube.com/embed/DdopdZlNvP8' frameborder='0' allow='autoplay; encrypted-media' allowfullscreen></iframe><br><br><span style='font-weight: 600;'>Как подключить:</span><br><br><p style='width:450px;'>Чтобы получить виджет, обратитесь в компанию <a href='https://linerapp.com/' target='_blank'>LinerApp</a><br><br>Телефон: <a href='tel:+74996477716' target='_blank'>+7 (499) 647-77-16</a><br><br>Почта: <a href='mailto:info@linerapp.com' target='_blank'>info@linerapp.com</a><p>"
+
+  },
+
+  "settings": {
+    "linnerwidget_code": "Пароль для установки виджета",
+    "copy_resp": "Копировать смену ответственного",
+    "copy_note": "Копировать примечания",
+    "copy_status": "Копировать смену статуса"
+  }
+
+}
