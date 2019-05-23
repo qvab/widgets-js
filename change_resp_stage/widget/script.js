@@ -137,7 +137,7 @@ define(['jquery'], function($) {
         }
 
         if (!( $('#linerapp-resp-stage').attr('id') || false )) {
-          $('body').append('<link rel="stylesheet" href="/'+ w_code+'/widget/css/resp_stage.css"><div style="display:none;" id="linerapp-resp-stage"></div>');
+          $('body').append('<link rel="stylesheet" href="/widgets/' + w_code + '/css/resp_stage.css"><div style="display:none;" id="linerapp-resp-stage"></div>');
         }
 
         return true;
