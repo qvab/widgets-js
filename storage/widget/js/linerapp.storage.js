@@ -297,7 +297,7 @@ function LinerAppStorage() {
 
 
   this.elemetsHTML = {
-    style: "<style> .linerapp-docs-field {float: left;width: 33%; text-align: center; } .linerapp-docs-contain-add-file { margin: 30px auto; } .linerapp-docs-filelist {margin: 10px auto 0;} .linerapp-docs-files-title {margin: 0px 15px 25px;padding: 13px 0;border-bottom: 2px #ccc solid;font-weight: 600;} .linerapp-docs-files-content table td {font-size: 13px;padding: 10px;overflow: hidden;max-width: 25%; vertical-align: middle;} tr.linerapp-table-header th {text-align: center;padding: 10px; } .field-list li { padding: 10px 0;}.field-list li + li {margin-top: 10px;border-top: 1px #ccc solid;} .field-list li > span:nth-of-type(1) {display: inline-block;width: 70%;overflow: hidden;text-overflow: ellipsis;} .field-list a {float: right;} .icon-linerapp-download {width: 22px;height: 19px;background-position: 0px -2440px;background-color: transparent;}.linerapp-upload { width: 100%; margin-top: 15px;} .linerapp-upload td, .linerapp-upload th {text-align: left;padding: 10px 10px; width: 33.3%;} .linerapp-container-file-input {position: relative;} .linerapp-container-file-input > input {height: 100%;left: 0;opacity: 0;position: absolute;top: 0;width: 100%;}.linerapp-place-drop .linerapp-container-file-input > div {padding: 25px 0;text-align: center; font-size: 13px;} .linerapp-place-drop:hover {background-color: rgba(77,133,230,0.6);color: #fff;}.linerapp-place-drop {border: 2px dashed #4d85e6;margin: 15px auto;transition: background-color 0.3s, color 0.3s;} .linerapp-upload-list li {text-align: left;margin-top: 9px;} .linerapp-upload-list li b {display: inline-block;} .linerapp-upload-list li > span {float: right;} .linerapp-docs {margin-top: -14px;} .linerapp-docs-files-content table {width: 100%;} .linerapp-list-types li > span {float: right;} .linerapp-list-types {border: 1px #ff7e00 solid;padding: 15px;margin-bottom: 15px;} .linerapp-list-types li + li {border-top: 1px #ccc solid;} .linerapp-list-types li {padding: 10px 0;} .linerapp-list-folders {border: 1px #4D85E6 solid;padding: 15px;} .widget_settings_block__fields .widget_settings_block__item_field:nth-of-type(1) {margin-bottom: 15px;padding: 15px;border: 1px #4D85E6 solid;}</style>",
+    style: "<style> .linerapp-docs-field {float: left;width: 33%; text-align: center; } .linerapp-docs-contain-add-file { margin: 30px auto; } .linerapp-docs-filelist {margin: 10px auto 0;} .linerapp-docs-files-title {margin: 0px 15px 25px;padding: 13px 0;border-bottom: 2px #ccc solid;font-weight: 600;} .linerapp-docs-files-content table td {font-size: 13px;padding: 10px;overflow: hidden;max-width: 25%; vertical-align: middle;} tr.linerapp-table-header th {text-align: center;padding: 10px; } .field-list li { padding: 10px 0; min-width: 80px;}.field-list li + li {margin-top: 10px;border-top: 1px #ccc solid;} .field-list li > span:nth-of-type(1) {display: inline-block;width: 70%;overflow: hidden;text-overflow: ellipsis;} .field-list a {float: right;} .icon-linerapp-download {width: 22px;height: 22px; background-color: transparent; background-image: url('/upl/" + w_code + "/widget/images/download_file.png'); background-repeat: no-repeat;}.linerapp-upload { width: 100%; margin-top: 15px;} .linerapp-upload td, .linerapp-upload th {text-align: left;padding: 10px 10px; width: 33.3%;} .linerapp-container-file-input {position: relative;} .linerapp-container-file-input > input {height: 100%;left: 0;opacity: 0;position: absolute;top: 0;width: 100%;}.linerapp-place-drop .linerapp-container-file-input > div {padding: 25px 0;text-align: center; font-size: 13px;} .linerapp-place-drop:hover {background-color: rgba(77,133,230,0.6);color: #fff;}.linerapp-place-drop {border: 2px dashed #4d85e6;margin: 15px auto;transition: background-color 0.3s, color 0.3s;} .linerapp-upload-list li {text-align: left;margin-top: 9px;} .linerapp-upload-list li b {display: inline-block;} .linerapp-upload-list li > span {float: right;} .linerapp-docs {margin-top: -14px;} .linerapp-docs-files-content table {width: 100%;} .linerapp-list-types li > span {float: right;} .linerapp-list-types {border: 1px #ff7e00 solid;padding: 15px;margin-bottom: 15px;} .linerapp-list-types li + li {border-top: 1px #ccc solid;} .linerapp-list-types li {padding: 10px 0;} .linerapp-list-folders {border: 1px #4D85E6 solid;padding: 15px;} .widget_settings_block__fields .widget_settings_block__item_field:nth-of-type(1) {margin-bottom: 15px;padding: 15px;border: 1px #4D85E6 solid;}</style>",
 
 
     loader: '<div class="default-overlay widget-settings__overlay default-overlay-visible" id="service_overlay" style="z-index: 101"><span class="spinner-icon expanded spinner-icon-abs-center" id="service_loader"></span></div>',
@@ -337,11 +337,16 @@ function LinerAppStorage() {
         for (var iFileId in arParams.files) {
           listFiles[iFileId] = {
             name: arParams.files[iFileId].name,
-            html: '<li><span>' + arParams.files[iFileId].name + '</span><a target="_blank" class="icon icon-linerapp-download" href="' + self.httpServer + '/docs/get/file/' + arParams.files[iFileId].google_id_file + '"></a></li>'
+            html: '<li><span>' + arParams.files[iFileId].name + '</span><a target="_blank" class="icon-linerapp-download" href="' + self.httpServer + '/docs/get/file/' + arParams.files[iFileId].google_id_file + '"></a></li>'
           };
           listFilesHTML += listFiles[iFileId].html;
         }
-
+        var user;
+        if(typeof  AMOCRM.constant("account")["users"][arParams.user] != "undefined"){
+          user=AMOCRM.constant("account")["users"][arParams.user];
+        }else{
+          user="Н/Д";
+        }
         $('<tr id="linerapp-block-' + arParams.id + '" class="linerapp-item">\
             <td class="field-type">' + arParams.type.option + '</td>\
         <td class="field-name">' + arParams.name + '</td>\
@@ -349,7 +354,7 @@ function LinerAppStorage() {
             <ul>' + listFilesHTML + '</ul>\</td>\
             <td class="field-date">' + arParams.date + '</td>\
             <td class="field-date-attache">' + arParams.date_attache + '</td>\
-            <td class="field-user">' + AMOCRM.constant("account")["users"][arParams.user] + '</td>\
+            <td class="field-user">' + user + '</td>\
             <td class="field-buttons"><a data-block-id="' + arParams.id + '" href="' + self.httpServer + '/docs/delete/file/' + arParams.id + '?subdomain=' + AMOCRM.constant('account').subdomain + '" class="linerapp-del-block icon icon-delete-trash"></a></td>\
             </tr>').appendTo(self.app.list.content.find("table"));
       }

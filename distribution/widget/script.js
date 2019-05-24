@@ -149,8 +149,8 @@ define(['jquery', './js/ion.rangeSlider.js', './js/main.js'], function($) {
         hashServer = $("#widget_settings__fields_wrapper").find('input[name="linnerwidget_code"]').val();
         // Подключение стилей
 
-        $('head').append('<link rel="stylesheet" href="/widgets/' + w_code + '/css/ion.rangeSlider.css" />');
-        $('head').append('<link rel="stylesheet" href="/widgets/' + w_code + '/css/ion.rangeSlider.skinHTML5.css" />');
+        $('head').append('<link rel="stylesheet" href="/widgets/amo_distribution_widget_linerapp/css/ion.rangeSlider.css" />');
+        $('head').append('<link rel="stylesheet" href="/widgets/amo_distribution_widget_linerapp/css/ion.rangeSlider.skinHTML5.css" />');
         $(".widget_settings_block__fields").find(".widget_settings_block__item_field:eq(0)").hide(); // Скрываем блок пользователей
         var twig = require('twigjs');
         w_code = self.get_settings().widget_code;
