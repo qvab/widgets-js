@@ -259,7 +259,7 @@ define(['jquery', 'lib/components/base/modal'], function($, Modal) {
             success: function(data) {
 
               if (data.error) {
-                alert(data);
+
               }
 
               modal.destroy();
