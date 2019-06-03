@@ -5,7 +5,7 @@
 			<div class="widget_settings_block__input_field">
 				<div class="widget_settings_block_users">
 					<div class="widget_settings_block_users__title_field widget_settings_block__title_field">{{ user["name"] }}</div>
-					<label class="linerapp_switch_label">
+					<label class="widget-change_resp_stage__linerapp_switch_label">
 						<input id="{{ index }}" class="linerapp_switch_input" type="checkbox" name="responsible[{{ index }}]" {{ sfields['responsible'][index] ? 'checked value="1"' : '' }}>
 						<i></i>
 					</label>
@@ -18,7 +18,7 @@
 		{% set k = null %}
 		<div>
 			<div class="widget_settings_block_users">
-				<div class="linerapp_resp_stage_pipeline__title">{{ pipeline.option }}</div>
+				<div class="widget-change_resp_stage__linerapp_resp_stage_pipeline__title">{{ pipeline.option }}</div>
 
 		        <div class="control--select" style="">
 		            <ul class="custom-scroll control--select--list" style="">
@@ -54,8 +54,8 @@
 
 	<div class="widget_settings_block__input_field">
 		<div class="widget_settings_block_users">
-			<div class="linerapp_resp_stage_pipeline__title">Не разрешать переход на предыдущий этап</div>
-			<label class="linerapp_switch_label">
+			<div class="widget-change_resp_stage__linerapp_resp_stage_pipeline__title">Не разрешать переход на предыдущий этап</div>
+			<label class="widget-change_resp_stage__linerapp_switch_label">
 				<input class="linerapp_switch_input" type="checkbox" name="reverse_order_status" {{ sfields['reverse_order_status'] ? 'checked value="1"' : '' }}>
 				<i></i>
 			</label>

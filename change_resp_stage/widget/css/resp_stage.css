@@ -4,7 +4,7 @@ body.page-loading::before {
 body.page-loading::after {
 	z-index: 1000 !important;
 }
-.linerapp_switch_label {
+.widget-change_resp_stage__linerapp_switch_label {
 	background-color: #23b7e5;
 	cursor: pointer;
 	position: relative;
@@ -15,16 +15,16 @@ body.page-loading::after {
 	margin: 8px 0 0 60px;
 }
 
-.linerapp_switch_label input {
+.widget-change_resp_stage__linerapp_switch_label input {
 	position: absolute;
 	opacity: 0;
 }
 
-.linerapp_switch_label input:checked + i::after {
+.widget-change_resp_stage__linerapp_switch_label input:checked + i::after {
 	margin-left: 16px;
 }
 
-.linerapp_switch_label i::after {
+.widget-change_resp_stage__linerapp_switch_label i::after {
 	content: "";
 	position: absolute;
 	background-color: #fff;
@@ -36,7 +36,7 @@ body.page-loading::after {
 	transition: margin-left 0.3s;
 }
 
-.linerapp_switch_label input:checked + i::before {
+.widget-change_resp_stage__linerapp_switch_label input:checked + i::before {
 	top: 50%;
 	bottom: 50%;
 	left: 50%;
@@ -45,7 +45,7 @@ body.page-loading::after {
 	border-radius: 5px;
 }
 
-.linerapp_switch_label i::before {
+.widget-change_resp_stage__linerapp_switch_label i::before {
 	content: "";
 	position: absolute;
 	top: -1px;
@@ -58,14 +58,14 @@ body.page-loading::after {
 	transition: all 0.2s;
 }
 
-.linked-form__field.linked-form__field_reassign .linked-form__field__value > span {
+.widget-change_resp_stage__linked-form__field.linked-form__field_reassign .linked-form__field__value > span {
 	display: none;
 }
 
-.linked-form__field.linked-form__field_reassign .linked-form__field__value > span:first-of-type {
+.widget-change_resp_stage__linked-form__field.linked-form__field_reassign .linked-form__field__value > span:first-of-type {
 	display: block;
 }
 
-.linerapp_resp_stage_pipeline__title {
+.widget-change_resp_stage__linerapp_resp_stage_pipeline__title {
 	padding: 8px 0;
 }
