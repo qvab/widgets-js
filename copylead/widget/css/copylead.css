@@ -1,21 +1,22 @@
 
-.widget-settings-block__desc-expander_hidden {
+.widget-copylead__desc-expander_hidden {
   overflow-y: visible;
   overflow-x: visible;
   height: auto;
+  width: auto;
 }
 
-.widget-settings-block__desc-expander {
+.widget-copylead__desc-expander {
   display: none;
 }
 
 
-.js-note-attach-remove {
+.widget-copylead__js-note-attach-remove {
   display: none;
 }
 
 
-.linerapp_switch_label {
+.widget-copylead__linerapp_switch_label {
   background-color: #23b7e5;
   cursor: pointer;
   position: relative;
@@ -26,16 +27,16 @@
   margin: 8px 0 0 60px;
 }
 
-.linerapp_switch_label input {
+.widget-copylead__linerapp_switch_label input {
   position: absolute;
   opacity: 0;
 }
 
-.linerapp_switch_label input:checked + i::after {
+.widget-copylead__linerapp_switch_label input:checked + i::after {
   margin-left: 16px;
 }
 
-.linerapp_switch_label i::after {
+.widget-copylead__linerapp_switch_label i::after {
   content: "";
   position: absolute;
   background-color: #fff;
@@ -47,7 +48,7 @@
   transition: margin-left 0.3s;
 }
 
-.linerapp_switch_label input:checked + i::before {
+.widget-copylead__linerapp_switch_label input:checked + i::before {
   top: 50%;
   bottom: 50%;
   left: 50%;
@@ -56,7 +57,7 @@
   border-radius: 5px;
 }
 
-.linerapp_switch_label i::before {
+.widget-copylead__linerapp_switch_label i::before {
   content: "";
   position: absolute;
   top: -1px;
@@ -67,15 +68,4 @@
   border: 1px solid #f0f0f0;
   border-radius: 30px;
   transition: all 0.2s;
-}
-
-.widget-settings-block__desc-expander_hidden {
-  overflow-y: visible;
-  overflow-x: visible;
-  height: auto;
-  width: auto;
-}
-
-.widget-settings-block__desc-expander {
-  display: none;
 }
