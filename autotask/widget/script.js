@@ -414,7 +414,7 @@ define(['jquery', 'lib/components/base/modal'], function($, Modal) {
         hashServer = $("#widget_settings__fields_wrapper").find('input[name="linnerwidget_code"]').val();
         var twig = require('twigjs');
         if (!( $('#linerapp-copy').attr('id') || false )) {
-          $('head').append('<link type="text/css" rel="stylesheet"  id="linerapp-copy" href="/widgets/' + w_code + '/css/not_file_del.css" />');
+          $('head').append('<link type="text/css" rel="stylesheet"  id="linerapp-copy" href="/widgets/' + w_code + '/css/autotask.css" />');
         }
         $(".modal-body .widget_settings_block").addClass(w_code);
 
@@ -430,7 +430,7 @@ define(['jquery', 'lib/components/base/modal'], function($, Modal) {
             .append('<div class="widget_settings_block__item_field">' + linerapp_active_button + '</div>');
 
 
-        $(".widget-settings-block__desc-expander_hidden").css("height", "auto");
+        $(".widget-autotask__desc-expander_hidden").css("height", "auto");
         var sValCode = self.params.linnerwidget_code;
         if (typeof sValCode == "undefined" || !sValCode) {
           var linerapp_request_button = twig({ref: '/tmpl/controls/button.twig'}).render({
