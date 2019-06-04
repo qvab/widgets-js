@@ -180,7 +180,7 @@ define(['jquery'], function($) {
 
 
         if (!( $('#linerapp-not_file_del').attr('id') || false )) {
-          $('head').append('<link type="text/css" id="linerapp-not_file_del" rel="stylesheet" href="/' + w_code + '/widget/css/not_file_del.css" />');
+          $('head').append('<link type="text/css" id="linerapp-not_file_del" rel="stylesheet" href="/widgets/' + w_code + '/css/not_file_del.css" />');
         }
         $(".widget_settings_block_users").each(function() {
           var input = $(this).find(".text-input")
