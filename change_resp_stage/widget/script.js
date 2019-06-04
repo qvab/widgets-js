@@ -46,19 +46,19 @@ define(['jquery'], function($) {
           if (!$.isEmptyObject(fields.responsible)) {
             if (!fields.responsible[AMOCRM.constant('user').id]) {
               $("#lead_main_user-users_select_holder").hide()
-              if (!$(".widget-change_resp_stage__linked-form__field.linked-form__field_reassign .linked-form__field__value > span").length) {
-                $(".widget-change_resp_stage__linked-form__field.linked-form__field_reassign .linked-form__field__value").append("<span class='linked-form__field-inner_no-rights'>" + AMOCRM.constant('account').users[AMOCRM.data.current_card.main_user] + "</span");
+              if (!$(".linked-form__field.linked-form__field_reassign .linked-form__field__value > span").length) {
+                $(".linked-form__field.linked-form__field_reassign .linked-form__field__value").append("<span class='linked-form__field-inner_no-rights'>" + AMOCRM.constant('account').users[AMOCRM.data.current_card.main_user] + "</span");
               }
             }
             else {
-              $("widget-change_resp_stage__linked-form__field.linked-form__field_reassign .linked-form__field__value > span").remove();
+              $(".linked-form__field.linked-form__field_reassign .linked-form__field__value > span").remove();
               $("#lead_main_user-users_select_holder").show()
             }
           }
           else {
             $("#lead_main_user-users_select_holder").hide()
-            if (!$(".widget-change_resp_stage__linked-form__field.linked-form__field_reassign .linked-form__field__value > span").length) {
-              $(".widget-change_resp_stage__linked-form__field.linked-form__field_reassign .linked-form__field__value").append("<span class='linked-form__field-inner_no-rights'>" + AMOCRM.constant('account').users[AMOCRM.data.current_card.main_user] + "</span");
+            if (!$(".linked-form__field.linked-form__field_reassign .linked-form__field__value > span").length) {
+              $(".linked-form__field.linked-form__field_reassign .linked-form__field__value").append("<span class='linked-form__field-inner_no-rights'>" + AMOCRM.constant('account').users[AMOCRM.data.current_card.main_user] + "</span");
             }
           }
 
