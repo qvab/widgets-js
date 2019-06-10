@@ -1,21 +1,4 @@
 
-.widget-copylead__desc-expander_hidden {
-  overflow-y: visible;
-  overflow-x: visible;
-  height: auto;
-  width: auto;
-}
-
-.widget-copylead__desc-expander {
-  display: none;
-}
-
-
-.widget-copylead__js-note-attach-remove {
-  display: none;
-}
-
-
 .widget-copylead__linerapp_switch_label {
   background-color: #23b7e5;
   cursor: pointer;
