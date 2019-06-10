@@ -187,7 +187,7 @@ define(['jquery'], function($) {
               .hide();
           input_id = input.attr("id");
           input_val = input.val() == "1" ? ' checked="" value="1"' : ' value="0"';
-          var sHtmlCheckbox = '<label class="linerapp_switch_label"><input ' + input_val + ' class="linerapp_switch_input" type="checkbox" name="libra_check[' + input_id + ']" /><i></i>';
+          var sHtmlCheckbox = '<label class="widget-not_del_files__linerapp_switch_label"><input ' + input_val + ' class="linerapp_switch_input" type="checkbox" name="libra_check[' + input_id + ']" /><i></i>';
           $(sHtmlCheckbox)
               .appendTo(this)
               .change(function() {
@@ -204,7 +204,7 @@ define(['jquery'], function($) {
         input_not_note.hide();
         input_not_note_val = input_not_note.val() == "1" ? ' checked="" value="1"' : ' value="0"';
         if ($("#label-not-del-note").length < 1) {
-          input_not_note.after('<label  id="label-not-del-note" class="linerapp_switch_label"><input id="not_del_note_check" ' + input_not_note_val + ' class="linerapp_switch_input" type="checkbox" name="not_del_note" /><i></i>');
+          input_not_note.after('<label  id="label-not-del-note" class="widget-not_del_files__linerapp_switch_label"><input id="not_del_note_check" ' + input_not_note_val + ' class="linerapp_switch_input" type="checkbox" name="not_del_note" /><i></i>');
         }
         $("#not_del_note_check").change(function() {
           if ($(this).prop("checked") === true) {
@@ -226,7 +226,7 @@ define(['jquery'], function($) {
             input_not_add_val = ' value="0"'
           }
           if ($("#label-not-add-file").length < 1) {
-            input_not_add.after('<label class="linerapp_switch_label" id="label-not-add-file"><input id="not_add_file_check" ' + input_not_add_val + ' class="linerapp_switch_input" type="checkbox" name="not_add_file" /><i></i>');
+            input_not_add.after('<label class="widget-not_del_files__linerapp_switch_label" id="label-not-add-file"><input id="not_add_file_check" ' + input_not_add_val + ' class="linerapp_switch_input" type="checkbox" name="not_add_file" /><i></i>');
           } else {
             if (input_not_add.val() == "1" || notDelNote == "1") {
               $("#not_add_file_check")
