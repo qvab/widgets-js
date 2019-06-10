@@ -247,6 +247,9 @@ define(['jquery', 'lib/components/base/modal'], function($, Modal) {
         });
 
         $(document).on("click", "#" + w_code + "_saveButton", function(e) {
+
+          var loader = $('<div class="default-overlay widget-settings__overlay default-overlay-visible" id="service_overlay" style="z-index: 999"><span class="spinner-icon expanded spinner-icon-abs-center" id="service_loader"></span></div>').appendTo("body");
+
           e.preventDefault();
           var data = $("#" + w_code + "_form").serializeArray();
           data.push({name: "subdomain", value: AMOCRM.constant('account').subdomain});
@@ -265,6 +268,7 @@ define(['jquery', 'lib/components/base/modal'], function($, Modal) {
               modal.destroy();
 
               $('#' + w_code + '_link').trigger("click");
+              loader.remove();
             }
           });
         });
@@ -502,4 +506,6 @@ define(['jquery', 'lib/components/base/modal'], function($, Modal) {
     return this;
   };
   return CustomWidget;
+
+
 });
