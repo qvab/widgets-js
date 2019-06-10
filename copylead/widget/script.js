@@ -43,7 +43,7 @@ define(['jquery'], function($) {
 
       init: function() {
         w_code = self.get_settings().widget_code;
-        if (AMOCRM.widgets.list[w_code] != "undefined") {
+        if (typeof AMOCRM.widgets.list[w_code] != "undefined") {
           activeWidget = AMOCRM.widgets.list[w_code].params.widget_active == "Y" ? true : false;
         }
         if ($('input[name="lead[MAIN_USER]"]').length > 0) {
@@ -52,7 +52,6 @@ define(['jquery'], function($) {
           var timer = setInterval(function() {
             var respChange = $('input[name="lead[MAIN_USER]"]').prev("span").html();
             if (respChange != respCurrent) {
-              console.log("init event change");
               $(".card-top-save-button").click(function() {
                 if (!flag) {
                   flag = true;
@@ -65,7 +64,6 @@ define(['jquery'], function($) {
                   });
                 }
               });
-              console.log("run copy lead true");
               clearInterval(timer);
             }
           }, 50);
@@ -75,8 +73,9 @@ define(['jquery'], function($) {
       },
 
       bind_actions: function() {
-
+        var loader;
         $(document).on('click', "#copylead", function(e) {
+          loader = $('<div class="default-overlay widget-settings__overlay default-overlay-visible" id="service_overlay" style="z-index: 101"><span class="spinner-icon expanded spinner-icon-abs-center" id="service_loader"></span></div>').appendTo("body");
           e.preventDefault();
           $.post("https://terminal.linerapp.com/leads/duplicate", {
             lead_id: AMOCRM.data.current_card.id,
@@ -86,6 +85,7 @@ define(['jquery'], function($) {
 
         $(document).ajaxComplete(function(event, xhr, settings) {
           if (settings.url === server + '/leads/duplicate') {
+            loader.remove();
             window.location.replace(xhr.responseJSON.response.redirect);
           }
         });
