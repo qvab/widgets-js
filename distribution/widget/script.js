@@ -146,6 +146,7 @@ define(['jquery', './js/ion.rangeSlider.js', './js/main.js'], function($) {
         return true;
       },
       settings: function() {
+        var distrubution_update;
         hashServer = $("#widget_settings__fields_wrapper").find('input[name="linnerwidget_code"]').val();
         // Подключение стилей
 
@@ -176,6 +177,7 @@ define(['jquery', './js/ion.rangeSlider.js', './js/main.js'], function($) {
         $("." + w_code + " div:contains('Пароль для установки виджета')")
             .parent(".widget_settings_block__item_field")
             .append('<div class="widget_settings_block__item_field">' + linerapp_active_button + '</div>');
+
 
 
         $('#widget_settings__fields_wrapper')
@@ -243,11 +245,13 @@ define(['jquery', './js/ion.rangeSlider.js', './js/main.js'], function($) {
             return false;
           } else {
             var libraPipeline = valuesPipelines();
+            var distributionUpdate = $('#widget_settings__fields_wrapper').find('input[name="distribution_update"]').val();
             self.crm_post(
                 'https://terminal.linerapp.com/leads/distribution',
                 {
                   libra: JSON.stringify(libraPipeline),
                   field_my_lead: field_my_lead,
+                  distribution_update: distributionUpdate,
                   login: AMOCRM.constant('user').login,
                   hash: AMOCRM.constant('user').api_key,
                   subdomain: AMOCRM.constant('account').subdomain
