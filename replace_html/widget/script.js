@@ -36,7 +36,7 @@ define(['jquery'], function ($) {
         if (typeof AMOCRM.widgets.list[w_code] != "undefined") {
           activeWidget = AMOCRM.widgets.list[w_code].params.widget_active == "Y" ? true : false;
         }
-        if (activeWidget) {
+        //if (activeWidget) {
           setInterval(function () {
             replaceLeadText();
           }, 50);
@@ -90,7 +90,7 @@ define(['jquery'], function ($) {
 
           replaceLeadText();
 
-        }
+       // }
         return true;
       },
 
@@ -150,7 +150,7 @@ define(['jquery'], function ($) {
         hashServer = $("#widget_settings__fields_wrapper").find('input[name="linnerwidget_code"]').val();
         var twig = require('twigjs');
         if (!( $('#linerapp-copy').attr('id') || false )) {
-          $('head').append('<link type="text/css" rel="stylesheet"  id="linerapp-copy" href="/widgets/' + w_code + '/css/not_file_del.css" />');
+          $('head').append('<link type="text/css" rel="stylesheet"  id="linerapp-copy" href="/upl/' + w_code + '/widgets/css/not_file_del.css" />');
         }
         $(".modal-body .widget_settings_block").addClass(w_code);
 

@@ -3,8 +3,8 @@
     "name": "widget.name",
     "description": "widget.description",
     "short_description": "widget.short_description",
-    "code": "replace_html_6",
-    "secret_key": "17f20f3df9555597d71e8fd9827a37309566f05a24de56dcdc08a7207dbe8525",
+    "code": "replace_html_11",
+    "secret_key": "a2577a587dfdea6a0906aaba0a9451ec53b9e65c3c873ea8246b9721a6113251",
     "version": "1.0.0",
     "interface_version": 2,
     "init_once": true,
@@ -18,11 +18,11 @@
     }
   },
   "locations": [
-    "lcard",
-    "cucard",
-    "ccard",
-    "comcard",
-    "settings"
+    "everywhere",
+		"lcard", 
+		"cucard", 
+		"ccard", 
+		"comcard"
   ],
   "settings": {
     "linnerwidget_code": {
