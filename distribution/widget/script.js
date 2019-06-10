@@ -240,12 +240,19 @@ define(['jquery', './js/ion.rangeSlider.js', './js/main.js'], function($) {
         $('button.js-widget-save, button.js-widget-install').on('click', function() {
           var code = $('#widget_settings__fields_wrapper').find('input[name="linnerwidget_code"]').val();
           var field_my_lead = $("#add-field-my-lead:checked").val() ? $("#add-field-my-lead:checked").val() : 0;
+          var distributionUpdate = $('#widget_settings__fields_wrapper').find('input[name="distribution_update"]').val();
+
           if ((hashServer != "undefined" && hashServer) && code != hashServer) {
             self.notifications('Ошибка установки', 'Неверный пароль для установки виджета');
             return false;
           } else {
+
+            if ((distributionUpdate<30)||(distributionUpdate>3600)){
+              self.notifications('Тайм-аут', 'Установите от 30 до 3600 секунд');
+              return false
+            }else{
+
             var libraPipeline = valuesPipelines();
-            var distributionUpdate = $('#widget_settings__fields_wrapper').find('input[name="distribution_update"]').val();
             self.crm_post(
                 'https://terminal.linerapp.com/leads/distribution',
                 {
@@ -264,6 +271,7 @@ define(['jquery', './js/ion.rangeSlider.js', './js/main.js'], function($) {
                 }
             );
             return true;
+          }
           }
         });
 

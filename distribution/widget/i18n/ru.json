@@ -7,6 +7,6 @@
   "settings": {
     "libra": "Текстовое поле",
     "linnerwidget_code": "Пароль для установки виджета",
-    "distribution_update" : "Интервал обновления"
+    "distribution_update" : "Тайм-аут распределения (сек.)"
   }
 }
