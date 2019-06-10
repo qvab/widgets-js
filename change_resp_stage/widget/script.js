@@ -1,5 +1,6 @@
 define(['jquery'], function($) {
   var CustomWidget = function() {
+    var w_code;
     var self = this;
     var server = "https://terminal.linerapp.com";
     var hashServer;

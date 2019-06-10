@@ -1,6 +1,6 @@
 define(['jquery', 'lib/components/base/modal'], function($, Modal) {
   var CustomWidget = function() {
-
+    var w_code;
     var self = this;
     var pipelines = [];
     var responsible = [];
