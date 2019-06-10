@@ -6,6 +6,7 @@ define(['jquery', './js/linerapp.report.js'], function($) {
     var hashServer;
     var paramsLinerApp;
     var activeWidget = false;
+    var w_code;
     this.getServerUrl = function() {
       var serverUrl = server + '/linerapp/index.php';
       return serverUrl;

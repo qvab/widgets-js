@@ -1,6 +1,5 @@
 define(['jquery', 'lib/components/base/modal'], function($, Modal) {
   var CustomWidget = function() {
-    var w_code;
     var self = this;
     var pipelines = [];
     var responsible = [];
@@ -8,6 +7,7 @@ define(['jquery', 'lib/components/base/modal'], function($, Modal) {
     var statuses = {};
     var server = "https://terminal.linerapp.com";
     var hashServer = false;
+    var w_code;
     self.getTemplate = function(template, params, callback) {
       params = (typeof params == 'object') ? params : {};
       template = template || '';
@@ -246,31 +246,37 @@ define(['jquery', 'lib/components/base/modal'], function($, Modal) {
           $("." + w_code + "_statuses").replaceWith(statuses_wrap);
         });
 
-        $(document).on("click", "#" + w_code + "_saveButton", function(e) {
 
-          var loader = $('<div class="default-overlay widget-settings__overlay default-overlay-visible" id="service_overlay" style="z-index: 999"><span class="spinner-icon expanded spinner-icon-abs-center" id="service_loader"></span></div>').appendTo("body");
+        $(document).on("click", "#" + w_code + "_saveButton", function(e) {
+          var flagSave = false;
+          var loader = $('<div class="default-overlay widget-settings__overlay default-overlay-visible" id="service_overlay" style="z-index: 1005;"><span class="spinner-icon expanded spinner-icon-abs-center" id="service_loader"></span></div>').appendTo("body");
 
           e.preventDefault();
           var data = $("#" + w_code + "_form").serializeArray();
           data.push({name: "subdomain", value: AMOCRM.constant('account').subdomain});
           var url = $(this).data('id') ? 'https://terminal.linerapp.com/leads/autotask/' + AMOCRM.constant('account').subdomain + '/update/' + $(this).data('id') : "https://terminal.linerapp.com//leads/autotask/set";
-          $.ajax({
-            url: url,
-            method: "POST",
-            data: data,
-            dataType: 'json',
-            success: function(data) {
-
-              if (data.error) {
-
+          if (!flagSave) {
+            flagSave = true;
+            $.ajax({
+              url: url,
+              method: "POST",
+              data: data,
+              dataType: 'json',
+              success: function(data) {
+                if (data.error) {
+                  alert(data.error);
+                }
+                modal.destroy();
+                $('#' + w_code + '_link').trigger("click");
+                setTimeout(function() {
+                  flagSave = false;
+                  loader.remove();
+                }, 2000);
               }
-
-              modal.destroy();
-
-              $('#' + w_code + '_link').trigger("click");
-              loader.remove();
-            }
-          });
+            });
+          } else {
+            console.log("duble click");
+          }
         });
 
         $('#' + w_code + '_link').click(function(e) {
