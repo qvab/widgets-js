@@ -174,14 +174,17 @@ define(['jquery', './js/ion.rangeSlider.js', './js/main.js'], function($) {
         });
 
         // Воставляем элементы
+
+        $('#widget_settings__fields_wrapper')
+          .append('<div class = "widget_settings_block__item_field">' + linerapp_request_button + '</div>');
+
+
         $("." + w_code + " div:contains('Пароль для установки виджета')")
             .parent(".widget_settings_block__item_field")
             .append('<div class="widget_settings_block__item_field">' + linerapp_active_button + '</div>');
 
 
 
-        $('#widget_settings__fields_wrapper')
-            .prepend('<div class = "widget_settings_block__item_field">' + linerapp_request_button + '</div>');
 
         var dop_field = '<div class="widget_settings_block__item_field">' +
             '<label class="control-checkbox checkboxes_dropdown__label   is-checked">' +
@@ -247,7 +250,7 @@ define(['jquery', './js/ion.rangeSlider.js', './js/main.js'], function($) {
             return false;
           } else {
 
-            if ((distributionUpdate<30)||(distributionUpdate>3600)){
+            if (distributionUpdate<30 || distributionUpdate>3600 || isNaN(distributionUpdate)){
               self.notifications('Тайм-аут', 'Установите от 30 до 3600 секунд');
               return false
             }else{
