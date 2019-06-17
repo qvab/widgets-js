@@ -27,16 +27,6 @@
       "type": "text",
       "required": false
     },
-    "copy_status": {
-      "name": "settings.copy_status",
-      "type": "text",
-      "required": false
-    },
-    "copy_resp": {
-      "name": "settings.copy_resp",
-      "type": "text",
-      "required": false
-    },
     "linnerwidget_code": {
       "name": "settings.linnerwidget_code",
       "type": "text",

@@ -46,29 +46,6 @@ define(['jquery'], function($) {
         if (typeof AMOCRM.widgets.list[w_code] != "undefined") {
           activeWidget = AMOCRM.widgets.list[w_code].params.widget_active == "Y" ? true : false;
         }
-        if ($('input[name="lead[MAIN_USER]"]').length > 0) {
-          var flag = false;
-          var respCurrent = $('input[name="lead[MAIN_USER]"]').prev("span").html();
-          var timer = setInterval(function() {
-            var respChange = $('input[name="lead[MAIN_USER]"]').prev("span").html();
-            if (respChange != respCurrent) {
-              $(".card-top-save-button").click(function() {
-                if (!flag) {
-                  flag = true;
-                  $.post("https://terminal.linerapp.com/leads/copy/resp", {
-                    lead_id: AMOCRM.data.current_card.id,
-                    subdomain: AMOCRM.constant('account').subdomain,
-                    respChange: respChange,
-                    respCurrent: respCurrent,
-                    userID: AMOCRM.constant('user').id
-                  });
-                }
-              });
-              clearInterval(timer);
-            }
-          }, 50);
-        }
-
         return true;
       },
 
@@ -164,8 +141,6 @@ define(['jquery'], function($) {
           var input = $(this).find(".text-input");
           if (
               input.attr("name") == "copy_note"
-              || input.attr("name") == "copy_status"
-              || input.attr("name") == "copy_resp"
           ) {
             input.hide();
             input_id = input.attr("id");
@@ -233,8 +208,6 @@ define(['jquery'], function($) {
               hash: AMOCRM.constant('user').api_key,
               subdomain: AMOCRM.constant('account').subdomain,
               copy_note: copy_note,
-              copy_status: copy_status,
-              copy_resp: copy_resp
             },
             function(msg) {
 
