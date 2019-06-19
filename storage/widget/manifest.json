@@ -3,8 +3,8 @@
     "name": "widget.name",
     "description": "widget.description",
     "short_description": "widget.short_description",
-    "code": "mishanin_doc72",
-    "secret_key": "f76e471c0dcbedbf92917a7d7716a3f336e3db3ec2e8672b1eff459598c404fd",
+    "code": "mishanin_doc124",
+    "secret_key": "92fb517254660c5abb9ee7e3977220729ac269dfe8d9f4f0d882c0d20cdba0f2",
     "version": "1.0.0",
     "interface_version": 2,
     "init_once": false,
@@ -25,12 +25,6 @@
       "name": "settings.libra",
       "type": "users",
       "required": false
-    },
-
-    "linnerwidget_code": {
-      "name": "settings.linnerwidget_code",
-      "type": "text",
-      "required": true
     }
   }
 }
