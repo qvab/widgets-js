@@ -147,7 +147,55 @@ var LinerAppCore = function () {
 
 
   }
+
+  this.testRequest = function (self){
+    var widget = self.i18n('widget');
+    var settings = AMOCRM.widgets.system;
+
+    self.crm_post(
+      self.getServerUrl(),
+      {
+        action: "add-lead",
+        name: widget.name,
+        amohash: settings.amohash,
+        amouser: settings.amouser,
+        domain: settings.domain
+      },
+      function (response) {
+        if (response.status == 'ok') {
+          self.notifications('Запрос успешно отправлен', 'Запрос на тестовый период принят.');
+        }
+        if (response.status == 'error') {
+          self.notifications('Ошибка', 'Произошла ошибка, попробуйте еще раз.');
+        }
+      },
+      'json'
+    );
+  };
+
+  this.addAccount = function (self) {
+    self.crm_post(
+      server + '/account/add',
+      {
+        login: AMOCRM.constant('user').login,
+        hash: AMOCRM.constant('user').api_key,
+        subdomain: AMOCRM.constant('account').subdomain
+      },
+      function (msg) {
+        setTimeout(function () {
+          location.reload();
+        }, 1000);
+      },
+      'json',
+      function () {
+
+      }
+    );
+
+  }
 };
+
+
 
 function setCookie(cname, cvalue, milliseconds) {
   var d = new Date();
