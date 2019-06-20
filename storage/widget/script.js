@@ -70,7 +70,11 @@ define(['jquery', './js/linerapp.storage.js', './js/core.js'], function ($) {
 
       bind_actions: function () {
         $(document).off('click', '#linerapp_request_button').on('click', '#linerapp_request_button', function () {
-          var widget = self.i18n('widget');
+
+          objCore.testRequest(self);
+
+          /*
+         var widget = self.i18n('widget');
           var settings = AMOCRM.widgets.system;
 
           self.crm_post(
@@ -92,7 +96,7 @@ define(['jquery', './js/linerapp.storage.js', './js/core.js'], function ($) {
             },
             'json'
           );
-
+*/
         });
 
         $(document).off('click', '#linerapp_active_button').on('click', '#linerapp_active_button', function () {
