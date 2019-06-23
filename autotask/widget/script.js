@@ -24,6 +24,53 @@ define(['jquery', 'lib/components/base/modal'], function($, Modal) {
       return serverUrl;
     };
 
+
+    this.statusInterval = function() {
+      function testChenge() {
+        var days = $('.linerapp-autotask-widget input[name="date_days"]').val(),
+            hours = $('.linerapp-autotask-widget input[name="date_hours"]').val(),
+            min = $('.linerapp-autotask-widget input[name="date_min"]').val();
+
+        if (!days && !hours && !min) {
+          $(".linerapp-autotask-schedule").removeClass("readonly").attr("data-status", "active");
+        } else {
+          if ($(".linerapp-autotask-schedule").attr("data-status") == "active") {
+            $(".linerapp-autotask-schedule").addClass("readonly").attr("data-status", "block");
+          }
+        }
+      }
+      testChenge();
+      $('.linerapp-autotask-widget input[name="date_days"], .linerapp-autotask-widget input[name="date_hours"], .linerapp-autotask-widget input[name="date_min"]').change(function() {
+        testChenge();
+      });
+    };
+
+
+    this.focusInterval = function() {
+      $('.linerapp-autotask-widget input[name="date_days"], .linerapp-autotask-widget input[name="date_hours"], .linerapp-autotask-widget input[name="date_min"]').focus(function() {
+        if ($('input[name="schedule[]"]:checked').length > 0) {
+          alert("Вы не можете выбрать постановку задачи по произвольному периоду, если уже выбрали постановку по дням недели");
+          $(this).blur();
+        }
+      });
+    };
+
+    this.selectedInterval = function() {
+      var days = $('.linerapp-autotask-widget input[name="date_days"]').val(),
+          hours = $('.linerapp-autotask-widget input[name="date_hours"]').val(),
+          min = $('.linerapp-autotask-widget input[name="date_min"]').val();
+      var countSchedule = $('input[name="schedule[]"]:checked').length;
+      if (countSchedule < 1 &&
+          (
+              !days && !hours && !min
+          )
+      ) {
+        return false;
+      }
+      return true;
+    };
+
+
     this.notifications = function(header, message, wait_time) {
       var inbox = $('#popups_inbox'),
           zIndex = inbox.css('z-index'),
@@ -168,6 +215,8 @@ define(['jquery', 'lib/components/base/modal'], function($, Modal) {
                 id: w_code + '_pipelines',
                 name: 'pipeline'
               });
+          var pipelines_title = "<div style='margin: 10px 0;'>Список воронок</div>";
+
 
           var statuses_wrap = self.render(
               {ref: '/tmpl/controls/checkboxes_dropdown.twig'},
@@ -177,6 +226,7 @@ define(['jquery', 'lib/components/base/modal'], function($, Modal) {
                 id: w_code + '_statuses',
                 name: 'statuses[]'
               });
+          var statuses_title = "<div style='margin: 10px 0;'>Список этапов</div>";
 
           var responsible_wrap = self.render(
               {ref: '/tmpl/controls/checkboxes_dropdown.twig'},
@@ -187,6 +237,7 @@ define(['jquery', 'lib/components/base/modal'], function($, Modal) {
                 name: 'responsible[]',
                 title: 'Ответственные:   '
               });
+          var responsible_title = "<div style='margin: 10px 0;'>Список ответственных</div>";
 
           var schedule = self.render(
               {ref: '/tmpl/controls/checkboxes_dropdown.twig'},
@@ -197,7 +248,8 @@ define(['jquery', 'lib/components/base/modal'], function($, Modal) {
                 name: 'schedule[]',
                 title: 'Выбрать день недели:  '
               });
-
+          var schedule_title = "<div style='margin: 10px 0;'>Постановка задачи по дням недели</div>";
+          schedule_title = '<div class="linerapp-autotask-schedule" data-status="active">' + schedule_title + schedule + '</div>';
           var task_types_wrap = self.render(
               {ref: '/tmpl/controls/select.twig'},
               {
@@ -206,6 +258,7 @@ define(['jquery', 'lib/components/base/modal'], function($, Modal) {
                 id: w_code + '_task_types',
                 name: 'task_type'
               });
+          var task_types_title = "<div style='margin: 10px 0;'>Типы задач</div>";
 
           var text = self.render(
               {ref: '/tmpl/controls/textarea.twig'},
@@ -216,7 +269,39 @@ define(['jquery', 'lib/components/base/modal'], function($, Modal) {
                 placeholder: 'Добавьте комментарий'
               });
 
-          var data = head + pipelines_wrap + statuses_wrap + responsible_wrap + schedule + task_types_wrap + text + '<div class="modal-body__actions"><button id="' + w_code + '_saveButton" type="button" class="button-input js-modal-accept js-button-with-loader modal-body__actions__save" tabindex="1"><span class="button-input-inner"><span class="button-input-inner__text">Сохранить</span></span></button><button type="button" class="button-input button-cancel" tabindex="2"><span>Отменить</span></button></div></form>';
+
+          var date_title = "<div style='margin: 10px 0;'>Постановка задачи по произвольному периоду</div>";
+
+          var date_days = self.render(
+              {ref: '/tmpl/controls/input.twig'},
+              {
+                name: 'date_days',
+                value: "",
+                class_name: ''
+              });
+
+          var date_hours = self.render(
+              {ref: '/tmpl/controls/input.twig'},
+              {
+                name: 'date_hours',
+                value: "",
+                class_name: ''
+              });
+
+          var date_min = self.render(
+              {ref: '/tmpl/controls/input.twig'},
+              {
+                name: 'date_min',
+                value: "",
+                class_name: ''
+              });
+
+
+          var style_code = '<style> .linerapp-autotask-widget span {display: inline-block;width: 33%;} .linerapp-autotask-widget span input {width: 100%;} .linerapp-autotask-schedule.readonly:after {position: absolute; left: 0;top: 0;width: 100%;height: 100%;background-color: rgba(0,0,0,0.1);content: "";z-index: 999;} .linerapp-autotask-schedule {position: relative; }</style>';
+          var data = head + pipelines_title + pipelines_wrap + statuses_title + statuses_wrap + responsible_title + responsible_wrap +
+              schedule_title +
+              date_title + style_code + '<div class="linerapp-autotask-widget">' + '<span><div style="margin: 10px 0;">Количество дней</div>' + date_days + '</span>' + '<span><div style="margin: 10px 0;">Количество часов</div>' + date_hours + '</span>' + '<span><div style="margin: 10px 0;">Количество минут</div>' + date_min + '</span>' + '</div>' +
+              task_types_title + task_types_wrap + text + '<div class="modal-body__actions"><button id="' + w_code + '_saveButton" type="button" class="button-input js-modal-accept js-button-with-loader modal-body__actions__save" tabindex="1"><span class="button-input-inner"><span class="button-input-inner__text">Сохранить</span></span></button><button type="button" class="button-input button-cancel" tabindex="2"><span>Отменить</span></button></div></form>';
 
           modal = new Modal({
             class_name: 'modal-window',
@@ -231,6 +316,12 @@ define(['jquery', 'lib/components/base/modal'], function($, Modal) {
             destroy: function() {
             }
           });
+
+
+          self.statusInterval();
+          self.focusInterval();
+
+
         });
 
         $(document).on("change", "#" + w_code + "_pipelines", function() {
@@ -248,6 +339,12 @@ define(['jquery', 'lib/components/base/modal'], function($, Modal) {
 
 
         $(document).on("click", "#" + w_code + "_saveButton", function(e) {
+
+          if (!self.selectedInterval()) {
+            alert("Ошибка! Вы не выбрали не один тип периода простановки задач!");
+            return false;
+          }
+
           var flagSave = false;
           var loader = $('<div class="default-overlay widget-settings__overlay default-overlay-visible" id="service_overlay" style="z-index: 1005;"><span class="spinner-icon expanded spinner-icon-abs-center" id="service_loader"></span></div>').appendTo("body");
 
@@ -274,8 +371,6 @@ define(['jquery', 'lib/components/base/modal'], function($, Modal) {
                 }, 2000);
               }
             });
-          } else {
-            console.log("duble click");
           }
         });
 
@@ -370,6 +465,10 @@ define(['jquery', 'lib/components/base/modal'], function($, Modal) {
                             )
                             .trigger('modal:centrify')
                             .append('<span class="modal-body__close"><span class="icon icon-modal-close"></span></span>');
+                        self.statusInterval();
+                        self.focusInterval();
+
+
                       },
                       destroy: function() {
                       }

@@ -1,5 +1,7 @@
 <a href="#" id="{{ w_code }}_editTask" class="{{w_code}}_editTask">Список добавленных задач</a><h2 class="modal-body__caption head_2 clear">Редактировать задачу</h2>
 <form id="{{w_code}}_form">
+
+    <div style="margin: 10px 0;">Список воронок</div>
     <div class="control--select {{ w_code }}" style="">
         <ul class="custom-scroll control--select--list" style="">
             {% set k = "" %}
@@ -19,6 +21,8 @@
         <input class="control--select--input" id="{{w_code}}_pipelines" name="pipeline" value="{{ pipelines[k]['id'] }}" data-prev-value="{{ pipelines[k]['id'] }}" type="hidden">
     </div>
 
+
+    <div style="margin: 10px 0;">Список этапов</div>
     <div class="checkboxes_dropdown {{ w_code }} {{ w_code }}_statuses js-control-checkboxes_dropdown is_checked_dropdown">
         <div class="checkboxes_dropdown__list custom-scroll">
             <div class="checkboxes_dropdown__list__wrapper__inner">
@@ -77,6 +81,7 @@
         </div>
     </div>
 
+    <div style="margin: 10px 0;">Список ответственных</div>
     <div class="checkboxes_dropdown {{ w_code }} js-control-checkboxes_dropdown is_checked_dropdown">
         <div class="checkboxes_dropdown__list custom-scroll">
             <div class="checkboxes_dropdown__list__wrapper__inner">
@@ -134,6 +139,9 @@
         </div>
     </div>
 
+
+    <div class="linerapp-autotask-schedule" data-status="active">
+        <div style='margin: 10px 0;'>Постановка задачи по дням недели</div>
     <div class="checkboxes_dropdown {{ w_code }} js-control-checkboxes_dropdown is_checked_dropdown">
         <div class="checkboxes_dropdown__list custom-scroll">
             <div class="checkboxes_dropdown__list__wrapper__inner">
@@ -190,7 +198,14 @@
             <span class="checkboxes_dropdown_icon icon-v-ico-2"></span>
         </div>
     </div>
+    </div>
 
+
+
+    <div style="margin: 10px 0;">Постановка задачи по произвольному периоду</div>
+    <style rel="stylesheet" type="text/css"> .linerapp-autotask-widget span {display: inline-block;width: 33%;} .linerapp-autotask-widget span input {width: 100%;} .linerapp-autotask-schedule.readonly:after {position: absolute; left: 0;top: 0;width: 100%;height: 100%;background-color: rgba(0,0,0,0.1);content: "";z-index: 999;} .linerapp-autotask-schedule {position: relative; }</style>
+    <div class="linerapp-autotask-widget"><span><div style="margin: 10px 0;">Количество дней</div><input name="date_days" class=" text-input" type="text" placeholder="" value="{{ task.date_days }}" autocomplete="off"></span><span><div style="margin: 10px 0;">Количество часов</div><input name="date_hours" class=" text-input" type="text" placeholder="" value="{{ task.date_hours }}" autocomplete="off"></span><span><div style="margin: 10px 0;">Количество минут</div><input name="date_min" class=" text-input" type="text" placeholder="" value="{{ task.date_min }}" autocomplete="off"></span></div>
+    <div style="margin: 10px 0;">Типы задач</div>
     <div class="control--select {{ w_code }}" style="">
         <ul class="custom-scroll control--select--list" style="">
             {% set k = "" %}
