@@ -535,18 +535,12 @@ define(['jquery', 'lib/components/base/modal', './js/core.js'], function($, Moda
         }
         $(".modal-body .widget_settings_block").addClass(w_code);
 
-        var linerapp_active_button = twig({ref: '/tmpl/controls/button.twig'}).render({
-          name: 'linerapp_active_button',
-          id: 'linerapp_active_button',
-          text: "Активировать пароль",
-          class_name: 'button-input_blue'
-        });
+
         // Воставляем элементы
 
-        /*$("." + w_code + " div:contains('Пароль для установки виджета')")
-            .parent(".widget_settings_block__item_field")
-            .append('<div class="widget_settings_block__item_field">' + linerapp_active_button + '</div>');
-        */
+        $(".widget_settings_block__item_field").eq(0).hide();
+
+
 
         $(".widget-autotask__desc-expander_hidden").css("height", "auto");
         var sValCode = self.params.linnerwidget_code;
