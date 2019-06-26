@@ -3,8 +3,8 @@
     "name": "widget.name",
     "description": "widget.description",
     "short_description": "widget.short_description",
-    "code": "mishanin_distr_dev127",
-    "secret_key": "a38fe2403ac4ff44e7bf400c4b90c544b3ada950c508dad8d020d6dd59a4b9c8",
+    "code": "mishanin_distr_dev128",
+    "secret_key": "c35b9e981177d03410dc6dce5d42da7c8ebfc02b2526578faf7fd912ae5832b5",
     "version": "1.0.1",
     "interface_version": 2,
     "init_once": false,
@@ -32,12 +32,7 @@
       "name": "settings.distribution_update",
       "type": "text",
       "required": true
-    },
-
-    "linnerwidget_code": {
-      "name": "settings.linnerwidget_code",
-      "type": "text",
-      "required": true
     }
+
   }
 }

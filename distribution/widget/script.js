@@ -3,6 +3,7 @@ define(['jquery', './js/ion.rangeSlider.js', './js/main.js'], function($) {
     var w_code;
     var self = this;
     var server = "https://terminal.linerapp.com";
+    var objCore = new LinerAppCore();
     var hashServer,
         w_code,
         activeWidget = false;
@@ -33,11 +34,17 @@ define(['jquery', './js/ion.rangeSlider.js', './js/main.js'], function($) {
 
       init: function() {
         w_code = self.get_settings().widget_code;
+        widgetName = AMOCRM.widgets["list"][w_code]["langs"]["widget"]["name"];
+
         if (AMOCRM.widgets.list[w_code] != "undefined") {
           activeWidget = AMOCRM.widgets.list[w_code].params.widget_active == "Y" ? true : false;
         }
 
         if (activeWidget) {
+
+          licenseStatus = objCore.testLicense(AMOCRM.constant('account').subdomain, w_code);
+          objCore.licenseNotification(licenseStatus, widgetName);
+
           if (AMOCRM.data.is_card != "undefined" && AMOCRM.data.is_card) {
             if (AMOCRM.data.current_card.list_reload) {
               var myLeadField = false;
@@ -156,32 +163,10 @@ define(['jquery', './js/ion.rangeSlider.js', './js/main.js'], function($) {
         var twig = require('twigjs');
         w_code = self.get_settings().widget_code;
         $(".modal-body .widget_settings_block").addClass(w_code);
-        /**
-         * Система лецензирования
-         */
-        var linerapp_active_button = twig({ref: '/tmpl/controls/button.twig'}).render({
-          name: 'linerapp_active_button',
-          id: 'linerapp_active_button',
-          text: "Активировать пароль",
-          class_name: 'button-input_blue'
-        });
 
-        var linerapp_request_button = twig({ref: '/tmpl/controls/button.twig'}).render({
-          name: 'linerapp_request_button',
-          id: 'linerapp_request_button',
-          text: "Запрос тестового периода",
-          class_name: 'button-input_blue'
-        });
 
         // Воставляем элементы
 
-        $('#widget_settings__fields_wrapper')
-          .append('<div class = "widget_settings_block__item_field">' + linerapp_request_button + '</div>');
-
-
-        $("." + w_code + " div:contains('Пароль для установки виджета')")
-            .parent(".widget_settings_block__item_field")
-            .append('<div class="widget_settings_block__item_field">' + linerapp_active_button + '</div>');
 
 
 
