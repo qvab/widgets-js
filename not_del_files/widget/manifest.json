@@ -3,8 +3,8 @@
     "name": "widget.name",
     "description": "widget.description",
     "short_description": "widget.short_description",
-    "code": "mishanin_not_del_file_79",
-    "secret_key": "19e3bd6f4726dd3e5815d4f1c024a1f62de43a8560bf824d89c8e989ef2b07db",
+    "code": "mishanin_not_del_file_86",
+    "secret_key": "105167353e43892c590fcc0c652d713ec1d9027c088b38c4d55e3786dc0a7ace",
     "version": "1.0.0",
     "interface_version": 2,
     "init_once": true,
@@ -39,12 +39,6 @@
       "name": "settings.not_del_notes",
       "type": "text",
       "required": false
-    },
-
-    "linnerwidget_code": {
-      "name": "settings.linnerwidget_code",
-      "type": "text",
-      "required": true
     }
   }
 }

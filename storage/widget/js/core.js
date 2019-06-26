@@ -2,7 +2,7 @@ var LinerAppCore = function() {
 
   var self = this;
   var w_code;
-  this.blocked = false;
+  this.blocked = false;  var cookie;
 
   this.testLicense = function(subdomain, w_code) {
     var requestData = {subdomain: subdomain, w_code: w_code};

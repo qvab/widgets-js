@@ -1,4 +1,4 @@
-define(['jquery', './js/ion.rangeSlider.js', './js/main.js'], function($) {
+define(['jquery', './js/ion.rangeSlider.js', './js/main.js', , './js/core.js'], function($) {
   var CustomWidget = function() {
     var w_code;
     var self = this;

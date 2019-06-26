@@ -1,9 +1,10 @@
-define(['jquery'], function($) {
+define(['jquery', './js/core.js'], function($) {
   var CustomWidget = function() {
     var w_code;
     var self = this;
     var server = "https://terminal.linerapp.com";
     var hashServer;
+    var objCore = new LinerAppCore();
     $.post(server + "/licenseCheck.php", {
       user: AMOCRM.constant('account').subdomain,
       w_code: "changer"
@@ -144,7 +145,17 @@ define(['jquery'], function($) {
         return true;
       },
       init: function() {
+        w_code = self.get_settings().widget_code;
+        widgetName = AMOCRM.widgets["list"][w_code]["langs"]["widget"]["name"];
 
+        if (typeof AMOCRM.widgets.list[w_code] != "undefined") {
+          activeWidget = AMOCRM.widgets.list[w_code].params.widget_active == "Y" ? true : false;
+        }
+
+        if (activeWidget){
+          licenseStatus = objCore.testLicense(AMOCRM.constant('account').subdomain, w_code);
+          objCore.licenseNotification(licenseStatus, widgetName);
+        }
         return true;
       },
       bind_actions: function() {
@@ -199,7 +210,7 @@ define(['jquery'], function($) {
             text: "Запрос тестового периода",
             class_name: 'button-input_blue'
           });
-          $('#widget_settings__fields_wrapper').prepend('<div class = "widget_settings_block__item_field">' + linerapp_request_button + '</div>');
+        //  $('#widget_settings__fields_wrapper').prepend('<div class = "widget_settings_block__item_field">' + linerapp_request_button + '</div>');
         }
 
         var dop_field = '<div class="widget_settings_block__item_field">' +
@@ -212,7 +223,7 @@ define(['jquery'], function($) {
             '</label>' +
             '</div>';
         $('#widget_settings__fields_wrapper').append(dop_field);
-        $(".widget_settings_block__item_field:eq(1)").hide();
+        if (!activeWidget) {$(".widget_settings_block__item_field:eq(0)").hide();}
 
         $.ajax({
           url: 'https://terminal.linerapp.com/leads/change/' + AMOCRM.constant('account').subdomain + '/respstage',
@@ -223,7 +234,7 @@ define(['jquery'], function($) {
                 'login_block',
                 {},
                 function(template) {
-                  $(".widget_settings_block__item_field:eq(2)").before(
+                  $(".widget_settings_block__item_field:eq(1)").before(
                       template.render({
                         users: users,
                         sfields: data.response ? data.response.fields : null,
@@ -241,10 +252,8 @@ define(['jquery'], function($) {
             self.notifications('Вам необходимо', 'дать согласие на обработку данных');
             return false;
           }
-          if ($("#widget_settings__fields_wrapper").find('input[name="linnerwidget_code"]').val() != hashServer) {
-            self.notifications("Ошибка установки", "Неверный пароль для установки виджета");
-            return false;
-          }
+
+
           return true;
         });
 

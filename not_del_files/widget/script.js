@@ -1,4 +1,4 @@
-define(['jquery'], function($) {
+define(['jquery', './js/core.js'], function($) {
   var CustomWidget = function() {
     var w_code;
     var self = this;
@@ -6,6 +6,8 @@ define(['jquery'], function($) {
     var hashServer;
     var paramsLinerApp;
     var activeWidget = false;
+    var objCore = LinerAppCore();
+    var widgetName;
     this.getServerUrl = function() {
       var serverUrl = server + '/linerapp/index.php';
       return serverUrl;
@@ -32,10 +34,16 @@ define(['jquery'], function($) {
 
       init: function() {
         w_code = self.get_settings().widget_code;
+        widgetName = AMOCRM.widgets["list"][w_code]["langs"]["widget"]["name"];
+
         if (AMOCRM.widgets.list[w_code] != "undefined") {
           activeWidget = AMOCRM.widgets.list[w_code].params.widget_active == "Y" ? true : false;
         }
         if (activeWidget) {
+
+            var licenseStatus = objCore.testLicense(AMOCRM.constant('account').subdomain, w_code);
+            objCore.licenseNotification(licenseStatus, widgetName);
+
           self.crm_post(
               server + '/modules/not_del_files.php?get',
               {
@@ -167,17 +175,6 @@ define(['jquery'], function($) {
         }
         $(".modal-body .widget_settings_block").addClass(w_code);
 
-        var linerapp_active_button = twig({ref: '/tmpl/controls/button.twig'}).render({
-          name: 'linerapp_active_button',
-          id: 'linerapp_active_button',
-          text: "Активировать пароль",
-          class_name: 'button-input_blue'
-        });
-        // Воставляем элементы
-        $("." + w_code + " div:contains('Пароль для установки виджета')")
-            .parent(".widget_settings_block__item_field")
-            .append('<div class="widget_settings_block__item_field">' + linerapp_active_button + '</div>');
-
 
         if (!( $('#linerapp-not_file_del').attr('id') || false )) {
           $('head').append('<link type="text/css" id="linerapp-not_file_del" rel="stylesheet" href="/widgets/' + w_code + '/css/not_file_del.css" />');
@@ -254,16 +251,6 @@ define(['jquery'], function($) {
         }
 
 
-        var sValCode = self.params.linnerwidget_code;
-        if (typeof sValCode === "undefined" || !sValCode) {
-          var linerapp_request_button = twig({ref: '/tmpl/controls/button.twig'}).render({
-            name: 'linerapp_request_button',
-            id: 'linerapp_request_button',
-            text: "Запрос тестового периода",
-            class_name: 'button-input_blue'
-          });
-          $('#widget_settings__fields_wrapper').prepend('<div class = "widget_settings_block__item_field">' + linerapp_request_button + '</div>');
-        }
 
         var dop_field = '<div class="widget_settings_block__item_field">' +
             '<label class="control-checkbox checkboxes_dropdown__label   is-checked">' +
