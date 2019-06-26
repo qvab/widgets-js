@@ -1,10 +1,10 @@
-var LinerAppCore = function () {
+var LinerAppCore = function() {
 
   var self = this;
   var w_code;
   this.blocked = false;
 
-  this.testLicense = function (subdomain, w_code) {
+  this.testLicense = function(subdomain, w_code) {
     var requestData = {subdomain: subdomain, w_code: w_code};
     var timeCurrent = new Date();
     var arrLicenseStatus = {};
@@ -24,7 +24,7 @@ var LinerAppCore = function () {
 
     arrLicenseStatus = {
       widgetStatus: "a",
-      widgetLifeTime: (new Date(timeCurrent.getTime() + 1 * 24 * 60 * 60 * 1000)),
+      widgetLifeTime: (new Date(timeCurrent.getTime() + 24 * 60 * 60 * 1000)),
       w_code: w_code
     };
 
@@ -55,26 +55,24 @@ var LinerAppCore = function () {
 
   };
 
-  this.licenseNotification = function (arrLicenseStatus, widgetName) {
+  this.licenseNotification = function(arrLicenseStatus, widgetName) {
     var timeCurrent = new Date(), timeHour = 60 * 60 * 1000, timeDay = timeHour * 24,
-      timeTestNotificationPeriod = 2 * timeDay, //За сколько дней до окончания лицензии уведомлять
-      timeActiveNotificationPeriod = 7 * timeDay,
-      timeOffNotificationInterval = 8 * timeHour,  //Оповещение раз в 8 часов
-      timeActiveNotificationInterval = 8 * timeHour;
+        timeTestNotificationPeriod = 2 * timeDay, //За сколько дней до окончания лицензии уведомлять
+        timeActiveNotificationPeriod = 7 * timeDay,
+        timeOffNotificationInterval = 8 * timeHour,  //Оповещение раз в 8 часов
+        timeActiveNotificationInterval = 8 * timeHour;
 
     if (arrLicenseStatus["widgetStatus"] && arrLicenseStatus["widgetLifeTime"]) {
 
       var widgetLifeTime = arrLicenseStatus["widgetLifeTime"],
-        widgetStatus = arrLicenseStatus["widgetStatus"],
-        w_code = arrLicenseStatus["w_code"],
-        cookieName = w_code + "_dont_disturb";
+          widgetStatus = arrLicenseStatus["widgetStatus"],
+          w_code = arrLicenseStatus["w_code"],
+          cookieName = w_code + "_dont_disturb";
 
       switch (widgetStatus) {
 
         case "f":
-
           cookie = getCookie(cookieName);
-
           if (!cookie || !(cookie == "true")) {
             AMOCRM.notifications.show_message({
               text: "Виджет отключен, обратитесь в Liner App",
@@ -82,15 +80,11 @@ var LinerAppCore = function () {
             });
             setCookie(cookieName, "true", timeOffNotificationInterval)
           }
-
           break;
 
         case "t":
-
           if (widgetLifeTime - timeCurrent <= timeTestNotificationPeriod) {
-
             cookie = getCookie(cookieName);
-
             if (!cookie || !(cookie == "true")) {
               AMOCRM.notifications.show_message_error({
                 text: "Тестовый период закончится " + new Intl.DateTimeFormat('en-GB').format(widgetLifeTime),
@@ -99,102 +93,94 @@ var LinerAppCore = function () {
               setCookie(cookieName, "true", timeActiveNotificationInterval)
             }
           }
-
           break;
 
         case "a":
-
           if (widgetLifeTime - timeCurrent <= timeActiveNotificationPeriod) {
-
             cookie = getCookie(cookieName);
-
             if (!cookie || !(cookie == "true")) {
               AMOCRM.notifications.show_message_error({
                 text: "Виджет оплачен до " + new Intl.DateTimeFormat('en-GB').format(widgetLifeTime),
                 header: widgetName
               });
-
               setCookie(cookieName, "true", timeActiveNotificationInterval);
-
             }
           }
-
           break;
 
         case "n":
-
+          // Подключен на вечно
           break;
 
         default:
 
           AMOCRM.notifications.show_message_error({
-              text: "Не удалось определить статус виджета",
-              header: "Liner App"
-            }
+                text: "Не удалось определить статус виджета",
+                header: "Liner App"
+              }
           );
 
       }
 
     } else {
       AMOCRM.notifications.show_message_error({
-          text: "Не удалось получить данные от сервера",
-          header: "Liner App"
-        }
+            text: "Не удалось получить данные от сервера",
+            header: "Liner App"
+          }
       );
       this.blocked = true;
 
     }
 
 
-  }
+  };
 
-  this.testRequest = function (self){
+  this.testRequest = function(self) {
     var widget = self.i18n('widget');
     var settings = AMOCRM.widgets.system;
-
+    var idClient =AMOCRM.constant('account').id;
     self.crm_post(
-      self.getServerUrl(),
-      {
-        action: "add-lead",
-        name: widget.name,
-        amohash: settings.amohash,
-        amouser: settings.amouser,
-        domain: settings.domain
-      },
-      function (response) {
-        if (response.status == 'ok') {
-          self.notifications('Запрос успешно отправлен', 'Запрос на тестовый период принят.');
-        }
-        if (response.status == 'error') {
-          self.notifications('Ошибка', 'Произошла ошибка, попробуйте еще раз.');
-        }
-      },
-      'json'
+        self.getServerUrl(),
+        {
+          action: "add-lead",
+          name: widget.name,
+          amohash: settings.amohash,
+          amouser: settings.amouser,
+          domain: settings.domain,
+          id_client: idClient
+        },
+        function(response) {
+          if (response.status == 'ok') {
+            self.notifications('Запрос успешно отправлен', 'Запрос на тестовый период принят.');
+          }
+          if (response.status == 'error') {
+            self.notifications('Ошибка', 'Произошла ошибка, попробуйте еще раз.');
+          }
+        },
+        'json'
     );
   };
 
-  this.addAccount = function (self) {
+  this.addAccount = function(self) {
     self.crm_post(
-      server + '/account/add',
-      {
-        login: AMOCRM.constant('user').login,
-        hash: AMOCRM.constant('user').api_key,
-        subdomain: AMOCRM.constant('account').subdomain
-      },
-      function (msg) {
-        setTimeout(function () {
-          location.reload();
-        }, 1000);
-      },
-      'json',
-      function () {
+        server + '/account/add',
+        {
+          login: AMOCRM.constant('user').login,
+          hash: AMOCRM.constant('user').api_key,
+          subdomain: AMOCRM.constant('account').subdomain
+        },
+        function(msg) {
+          setTimeout(function() {
+            location.reload();
+          }, 1000);
+        },
+        'json',
+        function() {
 
-      }
+        }
     );
-
   }
 };
-
 
 
 function setCookie(cname, cvalue, milliseconds) {
