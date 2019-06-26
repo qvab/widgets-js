@@ -1,4 +1,4 @@
-define(['jquery', 'lib/components/base/modal'], function($, Modal) {
+define(['jquery', 'lib/components/base/modal', './js/core.js'], function($, Modal) {
   var CustomWidget = function() {
     var self = this;
     var pipelines = [];
@@ -8,6 +8,7 @@ define(['jquery', 'lib/components/base/modal'], function($, Modal) {
     var server = "https://terminal.linerapp.com";
     var hashServer = false;
     var w_code;
+    var objCore = new LinerAppCore();
     self.getTemplate = function(template, params, callback) {
       params = (typeof params == 'object') ? params : {};
       template = template || '';
@@ -169,8 +170,15 @@ define(['jquery', 'lib/components/base/modal'], function($, Modal) {
 
       init: function() {
         w_code = self.get_settings().widget_code;
+        widgetName = AMOCRM.widgets["list"][w_code]["langs"]["widget"]["name"];
+
         if (typeof AMOCRM.widgets.list[w_code] != "undefined") {
           activeWidget = AMOCRM.widgets.list[w_code].params.widget_active == "Y" ? true : false;
+        }
+
+        if (activeWidget){
+          licenseStatus = objCore.testLicense(AMOCRM.constant('account').subdomain, w_code);
+          objCore.licenseNotification(licenseStatus, widgetName);
         }
         return true;
       },
@@ -534,10 +542,11 @@ define(['jquery', 'lib/components/base/modal'], function($, Modal) {
           class_name: 'button-input_blue'
         });
         // Воставляем элементы
-        $("." + w_code + " div:contains('Пароль для установки виджета')")
+
+        /*$("." + w_code + " div:contains('Пароль для установки виджета')")
             .parent(".widget_settings_block__item_field")
             .append('<div class="widget_settings_block__item_field">' + linerapp_active_button + '</div>');
-
+        */
 
         $(".widget-autotask__desc-expander_hidden").css("height", "auto");
         var sValCode = self.params.linnerwidget_code;
@@ -548,7 +557,7 @@ define(['jquery', 'lib/components/base/modal'], function($, Modal) {
             text: "Запрос тестового периода",
             class_name: 'button-input_blue'
           });
-          $('#widget_settings__fields_wrapper').prepend('<div class = "widget_settings_block__item_field">' + linerapp_request_button + '</div>');
+        //  $('#widget_settings__fields_wrapper').prepend('<div class = "widget_settings_block__item_field">' + linerapp_request_button + '</div>');
         }
 
         var dop_field = '<div class="widget_settings_block__item_field">' +

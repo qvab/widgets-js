@@ -3,8 +3,8 @@
     "name": "widget.name",
     "description": "widget.description",
     "short_description": "widget.short_description",
-    "code": "mishanin_autotask_dev75",
-    "secret_key": "780691f1840b764f8af8f356a8de9ec20a9efaecdc4635d486f7a78f14ac1854",
+    "code": "mishanin_autotask_dev77",
+    "secret_key": "c947f12d1ea78cb3bb4054aa8a2f10c54a2a7e168082072d4081402ca09e99a9",
     "version": "1.0.18",
     "interface_version": 2,
     "init_once": true,
@@ -24,7 +24,7 @@
     "linnerwidget_code": {
       "name": "settings.linnerwidget_code",
       "type": "text",
-      "required": true
+      "required": false
     }
   }
 }
