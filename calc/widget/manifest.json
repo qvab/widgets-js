@@ -3,8 +3,8 @@
     "name": "widget.name",
     "description": "widget.description",
     "short_description": "widget.short_description",
-    "code": "mishanin_calc_dev38",
-    "secret_key": "3d7d8b358bd6d152b218978be1fbdc451c2bd86791a47622c9854d0c814bd5ea",
+    "code": "mishanin_calc_dev41",
+    "secret_key": "6f15ad9a6a9da2b3dad1801247239f7c34219f49debfc203cbe56a8bc6ce7390",
     "version": "1.0.1",
     "interface_version": 2,
     "init_once": true,
@@ -95,11 +95,7 @@
       "name": "settings.field15",
       "type": "text",
       "required": false
-    },
-    "linnerwidget_code": {
-      "name": "settings.linnerwidget_code",
-      "type": "text",
-      "required": true
     }
+
   }
 }

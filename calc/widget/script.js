@@ -1,9 +1,10 @@
-define(['jquery'], function($) {
+define(['jquery', './js/core.js'], function($) {
   var CustomWidget = function() {
     var w_code;
     var self = this;
     var server = "https://terminal.linerapp.com";
     var hashServer = false;
+    var objCore = new LinerAppCore();
     this.getServerUrl = function() {
       var serverUrl = 'https://terminal.linerapp.com/linerapp/index.php';
       return serverUrl;
@@ -29,9 +30,17 @@ define(['jquery'], function($) {
       },
       init: function() {
         w_code = self.get_settings().widget_code;
+        widgetName = AMOCRM.widgets["list"][w_code]["langs"]["widget"]["name"];
+
         if (AMOCRM.widgets.list[w_code] != "undefined") {
           activeWidget = AMOCRM.widgets.list[w_code].params.widget_active == "Y" ? true : false;
         }
+
+        if (activeWidget){
+          licenseStatus = objCore.testLicense(AMOCRM.constant('account').subdomain, w_code);
+          objCore.licenseNotification(licenseStatus, widgetName);
+        }
+
         return true;
       },
       bind_actions: function() {
@@ -108,10 +117,10 @@ define(['jquery'], function($) {
           class_name: 'button-input_blue'
         });
         // Воставляем элементы
-        $("." + w_code + " div:contains('Пароль для установки виджета')")
+      /*  $("." + w_code + " div:contains('Пароль для установки виджета')")
             .parent(".widget_settings_block__item_field")
             .append('<div class="widget_settings_block__item_field">' + linerapp_active_button + '</div>');
-
+*/
         var sValCode = self.params.linnerwidget_code;
         if (typeof sValCode == "undefined" || !sValCode) {
           var linerapp_request_button = twig({ref: '/tmpl/controls/button.twig'}).render({
@@ -120,7 +129,7 @@ define(['jquery'], function($) {
             text: "Запрос тестового периода",
             class_name: 'button-input_blue'
           });
-          $('#widget_settings__fields_wrapper').prepend('<div class = "widget_settings_block__item_field">' + linerapp_request_button + '</div>');
+         // $('#widget_settings__fields_wrapper').prepend('<div class = "widget_settings_block__item_field">' + linerapp_request_button + '</div>');
         }
 
         var dop_field = '<div class="widget_settings_block__item_field">' +
