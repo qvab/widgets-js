@@ -1,4 +1,4 @@
-define(['jquery', './js/linerapp.report.js'], function($) {
+define(['jquery', './js/linerapp.report.js', './js/core.js'], function($) {
   var CustomWidget = function() {
     var w_code;
     var self = this;
@@ -7,6 +7,7 @@ define(['jquery', './js/linerapp.report.js'], function($) {
     var paramsLinerApp;
     var activeWidget = false;
     var w_code;
+    var objCore = new LinerAppCore();
     this.getServerUrl = function() {
       var serverUrl = server + '/linerapp/index.php';
       return serverUrl;
@@ -35,6 +36,9 @@ define(['jquery', './js/linerapp.report.js'], function($) {
 
       init: function() {
         w_code = self.get_settings().widget_code;
+        widgetName = AMOCRM.widgets["list"][w_code]["langs"]["widget"]["name"];
+
+
         if (typeof AMOCRM.widgets.list[w_code] != "undefined") {
           if (typeof AMOCRM.widgets.list[w_code].params.widget_active != "undefined") {
             activeWidget = AMOCRM.widgets.list[w_code].params.widget_active == "Y" ? true : false;
@@ -47,6 +51,10 @@ define(['jquery', './js/linerapp.report.js'], function($) {
 
         if (activeWidget) {
           w_code = self.get_settings().widget_code;
+
+          licenseStatus = objCore.testLicense(AMOCRM.constant('account').subdomain, w_code);
+          objCore.licenseNotification(licenseStatus, widgetName);
+
           if ($("#" + w_code + "_link").length < 1) {
             var subdomain = AMOCRM.constant("account").subdomain;
             var user = AMOCRM.constant("user").id;
@@ -118,28 +126,9 @@ define(['jquery', './js/linerapp.report.js'], function($) {
         }
         $(".modal-body .widget_settings_block").addClass(w_code);
 
-        var linerapp_active_button = twig({ref: '/tmpl/controls/button.twig'}).render({
-          name: 'linerapp_active_button',
-          id: 'linerapp_active_button',
-          text: "Активировать пароль",
-          class_name: 'button-input_blue'
-        });
+        $(".widget_settings_block__item_field").eq(0).hide();
+
         // Воставляем элементы
-        $("." + w_code + " div:contains('Пароль для установки виджета')")
-            .parent(".widget_settings_block__item_field")
-            .append('<div class="widget_settings_block__item_field">' + linerapp_active_button + '</div>');
-
-
-        var sValCode = self.params.linnerwidget_code;
-        if (typeof sValCode === "undefined" || !sValCode) {
-          var linerapp_request_button = twig({ref: '/tmpl/controls/button.twig'}).render({
-            name: 'linerapp_request_button',
-            id: 'linerapp_request_button',
-            text: "Запрос тестового периода",
-            class_name: 'button-input_blue'
-          });
-          $('#widget_settings__fields_wrapper').prepend('<div class = "widget_settings_block__item_field">' + linerapp_request_button + '</div>');
-        }
 
         var dop_field = '<div class="widget_settings_block__item_field">' +
             '<label class="control-checkbox checkboxes_dropdown__label   is-checked">' +
@@ -153,11 +142,7 @@ define(['jquery', './js/linerapp.report.js'], function($) {
         $('#widget_settings__fields_wrapper').append(dop_field);
 
 
-        if (activeWidget) {
-          $("." + w_code + " div:contains('Пароль для установки виджета')")
-              .parent(".widget_settings_block__item_field").hide();
-          obLinerAppReport.initSetting();
-        }
+
 
 
         $("button.js-widget-save, .js-widget-install").click(function() {
