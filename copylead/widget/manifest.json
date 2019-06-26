@@ -3,8 +3,8 @@
     "name": "widget.name",
     "description": "widget.description",
     "short_description": "widget.short_description",
-    "code": "mishanin_copy_131",
-    "secret_key": "327d454f815e0c413c3d4f639c0d613943617f0d9bf9405dc15309f6226f72dd",
+    "code": "mishanin_copy_134",
+    "secret_key": "97fd7039e5b7c07a4cec17fd769bbcab9be5089c1e8cfdf4605a90d9c813d120",
     "version": "1.0.0",
     "interface_version": 2,
     "init_once": true,
@@ -26,11 +26,6 @@
       "name": "settings.copy_note",
       "type": "text",
       "required": false
-    },
-    "linnerwidget_code": {
-      "name": "settings.linnerwidget_code",
-      "type": "text",
-      "required": true
     }
   }
 }
